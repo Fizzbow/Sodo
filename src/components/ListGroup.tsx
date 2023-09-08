@@ -1,31 +1,26 @@
 import { useState } from "react";
+import CheckItem from "./CheckItem";
+import type { ItemProps } from "./CheckItem";
 
 interface Props {
-  list: string[];
+  list: Array<ItemProps>;
   heading: string;
   onSelectItem: (item: string) => void;
 }
 
 function ListGroup({ list, heading, onSelectItem }: Props) {
-  //   const list = ["an item", "items", "new york", "Canada"];
-  // arr[0] -> variable (selectedIndex)
-  // arr[1] -> updater function
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
-  //   list = [];
-  //   const message = list.length === 0 ? <p>NO item found</p> : null;
   const message = list.length === 0 && <p>NOt item found</p>;
   return (
     <>
       <h1>{heading}</h1>
       {message}
       <ul className="list-group">
-        {list.map((item, index) => (
+        {/* {list.map((item, index) => (
           <li
             onClick={() => {
-              setSelectedIndex(index),
-                //children -> parent
-                onSelectItem(item);
+              setSelectedIndex(index), onSelectItem(item);
             }}
             className={
               selectedIndex === index
@@ -36,6 +31,9 @@ function ListGroup({ list, heading, onSelectItem }: Props) {
           >
             {item}
           </li>
+        ))} */}
+        {list.map((item, index) => (
+          <CheckItem {...item} />
         ))}
       </ul>
     </>
