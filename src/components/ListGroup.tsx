@@ -1,11 +1,12 @@
-import { MouseEvent, useState } from "react";
+import { useState } from "react";
 
 interface Props {
   list: string[];
   heading: string;
+  onSelectItem: (item: string) => void;
 }
 
-function ListGroup(props: Props) {
+function ListGroup({ list, heading, onSelectItem }: Props) {
   //   const list = ["an item", "items", "new york", "Canada"];
   // arr[0] -> variable (selectedIndex)
   // arr[1] -> updater function
@@ -13,15 +14,19 @@ function ListGroup(props: Props) {
 
   //   list = [];
   //   const message = list.length === 0 ? <p>NO item found</p> : null;
-  const message = props.list.length === 0 && <p>NOt item found</p>;
+  const message = list.length === 0 && <p>NOt item found</p>;
   return (
     <>
-      <h1>{props.heading}</h1>
+      <h1>{heading}</h1>
       {message}
       <ul className="list-group">
-        {props.list.map((item, index) => (
+        {list.map((item, index) => (
           <li
-            onClick={() => setSelectedIndex(index)}
+            onClick={() => {
+              setSelectedIndex(index),
+                //children -> parent
+                onSelectItem(item);
+            }}
             className={
               selectedIndex === index
                 ? "list-group-item active"
