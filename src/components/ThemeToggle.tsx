@@ -1,5 +1,11 @@
-import { motion, useAnimate } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { Theme } from "../contexts/themes";
+
+interface Props {
+  themes: Theme[];
+  setTheme: (themeId: Theme["themeId"]) => void;
+}
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -20,16 +26,14 @@ const item = {
     opacity: 1,
   },
 };
-const ThemeToggle = () => {
+
+const ThemeToggle = ({ themes, setTheme }: Props) => {
   const [showToggle, setShowToggle] = useState(false);
-  // const [scope, setAnimate] = useAnimate();
-  // useEffect(() => {
-  //   setAnimate(".arrow", { rotate: showToggle ? 180 : 0 }, { duration: 0.2 });
-  // }, [showToggle]);
   return (
     <header my-6 flex="~ row items-center justify-end">
       <nav w-50>
         <motion.button
+          cursor-pointer
           className="bg-word/100
            w-full 
            rounded-3
@@ -37,7 +41,6 @@ const ThemeToggle = () => {
            flex-row
            justify-between
          text-backdrop/100
-           cursor-pointer
            font-700
            mb-3
            text-18px
@@ -63,12 +66,14 @@ const ThemeToggle = () => {
             initial="hidden"
             animate="visible"
             variants={container}
-            className="bg-word  absolute p-4 overflow-hidden rounded-6 grid-cols-4 grid w-50 h-30"
+            className="bg-word  absolute p-4 overflow-hidden rounded-6 grid-cols-4 grid w-50 h-20"
           >
-            {[0, 1, 2, 3, 4, 5].map((index) => (
+            {themes.map((theme) => (
               <motion.li
-                key={index}
-                className="bg-amber self-center justify-self-center w-9 h-9 rounded-9999"
+                key={theme.themeId}
+                onClick={() => setTheme(theme.themeId)}
+                style={{ backgroundColor: theme.color }}
+                className="cursor-pointer self-center justify-self-center w-9 h-9 rounded-9999"
                 variants={item}
               />
             ))}
