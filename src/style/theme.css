@@ -4,21 +4,21 @@
 }
 
 .themed.green {
-  --backdrop: #007c60;
-  --word: #fff;
+  --backdrop: 0, 124, 96;
+  --word: 255, 255, 255;
 }
 
 .themed.purple {
-  --backdrop: #4564b6;
-  --word: #fff;
+  --backdrop: 69, 100, 182;
+  --word: 255, 255, 255;
 }
 
 .themed.pinky {
-  --backdrop: #ece1f3;
-  --word: #6b4d81;
+  --backdrop: 236, 225, 243;
+  --word: 107, 77, 129;
 }
 
 .themed.dark {
-  --backdrop: #28272a;
-  --word: #0f8488;
+  --backdrop: 40, 39, 42;
+  --word: 15, 132, 136;
 }

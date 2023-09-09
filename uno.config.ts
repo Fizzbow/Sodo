@@ -36,8 +36,8 @@ export default defineConfig({
     // },
     theme: {
         colors: {
-            backdrop: 'var(--backdrop)',
-            word: 'var(--word)'
+            backdrop: 'rgba(var(--backdrop) , %alpha)',
+            word: 'rgba(var(--word) , %alpha)'
         },
         breakpoints: {
             xxs: '0px',

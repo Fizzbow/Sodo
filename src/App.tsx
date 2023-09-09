@@ -4,15 +4,6 @@ import { ItemProps } from "./components/CheckItem";
 import ThemeToggle from "./components/ThemeToggle";
 import { createContext } from "react";
 
-// const mode = useColorMode({
-//   attribute: "theme",
-//   modes: {
-//     // custom colors
-//     dim: "dim",
-//     cafe: "cafe",
-//   },
-// });
-
 function App() {
   const ThemeContext = createContext({
     theme: "green",

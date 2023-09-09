@@ -17,7 +17,7 @@ function ListGroup({ list, heading, onSelectItem }: Props) {
       <div>
         <h1>{heading}</h1>
         {message}
-        <ul className="list-group">
+        <ul>
           {list.map((item, index) => (
             <CheckItem {...item} key={index} />
           ))}
