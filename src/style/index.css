@@ -1,7 +1,14 @@
+@import "./theme.css";
+
 html,
-body {
+body,
+#root {
   height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
+
 html,
 body,
 div,
@@ -54,19 +61,7 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-caption,
-th {
-  text-align: left;
-  font-weight: normal;
-}
-html,
-body,
-fieldset,
-img,
-iframe,
-abbr {
-  border: 0;
-}
+
 i,
 cite,
 em,
