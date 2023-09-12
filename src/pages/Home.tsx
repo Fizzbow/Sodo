@@ -5,7 +5,7 @@ import TODO_LIST from "../constant/localstorage.contant";
 
 const todoList: TodoList[] = [
   {
-    heading: "TODOlist",
+    heading: "👩‍💻HOME",
     id: 1,
     list: [
       { text: "an item", caption: "captions", id: 1 },

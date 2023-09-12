@@ -1,11 +1,10 @@
-import { useCallback, useState } from "react";
 import ListGroup from "../../components/ListGroup";
-import { ItemProps } from "../../components/ListGroup";
+import { TodoItem } from "../../components/ListGroup";
 
 export interface TodoList {
   heading: string;
   id: number;
-  list: Array<ItemProps>;
+  list: Array<TodoItem>;
 }
 
 interface Props {
@@ -14,6 +13,18 @@ interface Props {
 }
 
 const TodoCard = ({ todoList, changeTodo }: Props) => {
+  function changeItem(todoItem: TodoItem, cardTodo: TodoList) {
+    const newList = cardTodo.list.map((i) => {
+      if (i.id === todoItem.id) {
+        return todoItem;
+      }
+      return i;
+    });
+    changeTodo({
+      ...cardTodo,
+      list: newList,
+    });
+  }
   return (
     <>
       {todoList.map((item) => {
@@ -35,7 +46,10 @@ const TodoCard = ({ todoList, changeTodo }: Props) => {
                 }
               />
             </div>
-            <ListGroup list={item.list} />
+            <ListGroup
+              onChangeItem={(todoItem) => changeItem(todoItem, item)}
+              list={item.list}
+            />
           </div>
         );
       })}

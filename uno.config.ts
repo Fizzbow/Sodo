@@ -38,7 +38,8 @@ export default defineConfig({
         colors: {
             backdrop: 'rgba(var(--backdrop) , %alpha)',
             word: 'rgba(var(--word) , %alpha)',
-            tint: { 1: 'rgba(var(--tint-1) , %alpha)', 2: 'rgba(var(--tint-2) , %alpha)', 3: 'rgba(var(--tint-3) , %alpha)' }
+            tint: { 1: 'rgba(var(--tint-1) , %alpha)', 2: 'rgba(var(--tint-2) , %alpha)', 3: 'rgba(var(--tint-3) , %alpha)' },
+            check: 'rgba(var(--check), %alpha)'
         },
         breakpoints: {
             xxs: '0px',
