@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TodoCard, { TodoList } from "./todo/TodoCard";
 import { motion } from "framer-motion";
 import TODO_LIST from "../constant/localstorage.contant";
@@ -14,23 +14,25 @@ const todoList: TodoList[] = [
       {
         text: "new york",
         caption: "captions",
-        id: "saldihypoiuyw0q98uoknjlkn",
+        id: 4,
       },
     ],
   },
 ];
-const storageTodoList: TodoList[] = localStorage.getItem(TODO_LIST);
 
-function initTodoList() {
+function initTodoList(): TodoList[] {
+  const storageTodoList = localStorage.getItem(TODO_LIST);
+
   if (!storageTodoList) return todoList;
-  return storageTodoList;
+  return JSON.parse(storageTodoList);
 }
 
 function Home() {
   const [todo, setTodoList] = useState(initTodoList);
-  //   const changeInput = useCallback((event) => {
-  //     changeHeading(event.target.value);
-  //   }, []);
+
+  useEffect(() => {
+    localStorage.setItem(TODO_LIST, JSON.stringify(todo));
+  }, [todo]);
 
   function handleChangeTodo(handleTodo: TodoList) {
     setTodoList(

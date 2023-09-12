@@ -11,9 +11,6 @@ interface Props {
 }
 
 function ListGroup({ list }: Props) {
-  // const [selectedIndex, setSelectedIndex] = useState(-1);
-
-  // const message = list.length === 0 && <p>NOt item found</p>;
   return (
     <>
       <div>
