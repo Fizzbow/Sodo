@@ -11,7 +11,11 @@ const todoList: TodoList[] = [
       { text: "an item", caption: "captions", id: 1 },
       { text: "items", caption: "captions", id: 2 },
       { text: "new york", caption: "captions", id: 3 },
-      { text: "new york", caption: "captions", id: 4 },
+      {
+        text: "new york",
+        caption: "captions",
+        id: "saldihypoiuyw0q98uoknjlkn",
+      },
     ],
   },
 ];
