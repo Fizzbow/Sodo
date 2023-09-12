@@ -37,7 +37,8 @@ export default defineConfig({
     theme: {
         colors: {
             backdrop: 'rgba(var(--backdrop) , %alpha)',
-            word: 'rgba(var(--word) , %alpha)'
+            word: 'rgba(var(--word) , %alpha)',
+            tint: { 1: 'rgba(var(--tint-1) , %alpha)', 2: 'rgba(var(--tint-2) , %alpha)', 3: 'rgba(var(--tint-3) , %alpha)' }
         },
         breakpoints: {
             xxs: '0px',
@@ -61,18 +62,6 @@ export default defineConfig({
 
         }],
     ],
-    // rules: [
-    //     [/^text-(.*)$/, ([, c], { theme }) => {
-    //         // console.log({ theme })
-    //         if (theme.colors[c])
-    //             return { color: theme.colors[c] }
-    //     }],
-    // ],
-    shortcuts: {
-        'text-tint-1': 'text-[#fff]',
-        'text-tint-2': 'text-[#BCBCBC]',
-        'text-tint-3': 'text-[#4E4E4E]'
-    },
     safelist: [],
     presets: [
         presetUno(),

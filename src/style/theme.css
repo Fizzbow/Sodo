@@ -7,21 +7,35 @@
   color: rgba(var(--word), 1);
 }
 .themed.green {
+  /** background */
   --backdrop: 0, 124, 96;
+  /** title */
   --word: 255, 255, 255;
+  --tint-1: 255, 255, 255;
+  --tint-2: 188, 188, 188;
+  --tint-3: 78, 78, 78;
 }
 
 .themed.purple {
   --backdrop: 69, 100, 182;
   --word: 255, 255, 255;
+  --tint-1: 255, 255, 255;
+  --tint-2: 188, 188, 188;
+  --tint-3: 78, 78, 78;
 }
 
 .themed.pinky {
   --backdrop: 236, 225, 243;
   --word: 107, 77, 129;
+  --tint-1: 255, 255, 255;
+  --tint-2: 188, 188, 188;
+  --tint-3: 78, 78, 78;
 }
 
 .themed.dark {
   --backdrop: 40, 39, 42;
   --word: 15, 132, 136;
+  --tint-1: 48, 47, 50;
+  --tint-2: 188, 188, 188;
+  --tint-3: 255, 255, 255;
 }
