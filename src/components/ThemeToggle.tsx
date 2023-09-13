@@ -30,7 +30,7 @@ const item = {
 const ThemeToggle = ({ themes, setTheme }: Props) => {
   const [showToggle, setShowToggle] = useState(false);
   return (
-    <header my-6 flex="~ row items-center justify-end">
+    <header flex="~ row items-center justify-end">
       <nav w-50>
         <motion.button
           cursor-pointer

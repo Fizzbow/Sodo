@@ -2,6 +2,7 @@ import { useAnimate } from "framer-motion";
 import "../style/checkbox.css";
 import { stagger } from "framer-motion/dom";
 import { useEffect } from "react";
+import Button from "./Button";
 export interface TodoItem {
   text: string;
   caption: string;
@@ -43,7 +44,7 @@ const ListGroup = ({ list, onChangeItem }: Props) => {
             p-4
             bg-tint-1
             rounded-1
-            flex="~ row items-center"
+            flex="~ row items-center gap-10"
           >
             <div
               w-full
@@ -90,6 +91,7 @@ const ListGroup = ({ list, onChangeItem }: Props) => {
                 {/* {caption && <span text-tint-2>{caption}</span>} */}
               </div>
             </div>
+            <Button type="delete" />
           </li>
         );
       })}

@@ -25,6 +25,7 @@ const TodoCard = ({ todoList, changeTodo }: Props) => {
       list: newList,
     });
   }
+
   return (
     <>
       {todoList.map((item) => {
