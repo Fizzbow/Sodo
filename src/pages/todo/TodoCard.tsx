@@ -1,9 +1,10 @@
+import { Reorder } from "framer-motion";
 import ListGroup from "../../components/ListGroup";
 import { TodoItem } from "../../components/ListGroup";
 
 export interface TodoList {
   heading: string;
-  id: number;
+  id: string;
   list: Array<TodoItem>;
 }
 
@@ -38,7 +39,7 @@ const TodoCard = ({ todoList, changeTodo }: Props) => {
     <>
       {todoList.map((item) => {
         return (
-          <div key={item.id}>
+          <div key={item.id} flex="~ col">
             <div
               flex="~ row items-center"
               className="hover:bg-tint-2:50 cursor-pointer py-3 px-2 rounded-1 mb-4"
@@ -55,7 +56,12 @@ const TodoCard = ({ todoList, changeTodo }: Props) => {
                 }
               />
             </div>
+
             <ListGroup
+              onChangeList={(list) => {
+                changeTodo({ ...item, list });
+                console.log(list);
+              }}
               onChangeItem={(todoItem) => changeItem(todoItem, item)}
               onDeleteItem={(todoItem) => deleteItem(todoItem, item)}
               list={item.list}
