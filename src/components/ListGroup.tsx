@@ -13,9 +13,10 @@ export interface TodoItem {
 interface Props {
   list: Array<TodoItem>;
   onChangeItem: (item: TodoItem) => void;
+  onDeleteItem: (item: TodoItem) => void;
 }
 
-const ListGroup = ({ list, onChangeItem }: Props) => {
+const ListGroup = ({ list, onChangeItem, onDeleteItem }: Props) => {
   const [scoped, animate] = useAnimate();
   useEffect(() => {
     if (list.every((item) => item.checked)) {
@@ -91,7 +92,7 @@ const ListGroup = ({ list, onChangeItem }: Props) => {
                 {/* {caption && <span text-tint-2>{caption}</span>} */}
               </div>
             </div>
-            <Button type="delete" />
+            <Button type="delete" onClick={() => onDeleteItem(todo)} />
           </li>
         );
       })}

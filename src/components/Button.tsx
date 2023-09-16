@@ -1,12 +1,15 @@
 import { motion } from "framer-motion";
+import { ButtonHTMLAttributes } from "react";
 
 interface Props {
   type: "delete" | "plus";
+  onClick: () => void;
 }
 
-const Button = ({ type }: Props) => {
+const Button = ({ type, onClick }: Props) => {
   return (
     <motion.button
+      onClick={onClick}
       className={`
       flex
       justify-center

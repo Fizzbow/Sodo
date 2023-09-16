@@ -26,6 +26,14 @@ const TodoCard = ({ todoList, changeTodo }: Props) => {
     });
   }
 
+  function deleteItem(todoItem: TodoItem, cardTodo: TodoList) {
+    const newList = cardTodo.list.filter((i) => i.id !== todoItem.id);
+    changeTodo({
+      ...cardTodo,
+      list: newList,
+    });
+  }
+
   return (
     <>
       {todoList.map((item) => {
@@ -49,6 +57,7 @@ const TodoCard = ({ todoList, changeTodo }: Props) => {
             </div>
             <ListGroup
               onChangeItem={(todoItem) => changeItem(todoItem, item)}
+              onDeleteItem={(todoItem) => deleteItem(todoItem, item)}
               list={item.list}
             />
           </div>
