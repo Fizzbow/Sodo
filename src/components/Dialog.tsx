@@ -33,6 +33,17 @@ const Dialog = ({ onCancel, onConfirm }: Props) => {
         </header>
         <section my-4>
           <input
+            min-w-xs
+            py-2
+            text-16px
+            type="text"
+            border-none
+            border-b-tint-2
+            border-b-solid
+            border-b-2
+            outline-none
+            bg-transparent
+            focus="border-b-check transition duration-300"
             value={inputVal}
             onChange={(e) => setInputVal(e.target.value)}
           />
