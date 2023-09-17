@@ -56,11 +56,11 @@ const ListGroup = ({
   return (
     <>
       <Reorder.Group
-        flex-1
         axis="y"
         values={list}
         onReorder={onChangeList}
         ref={scoped}
+        className="mb-4"
       >
         {list.map((todo) => {
           return (
@@ -73,6 +73,7 @@ const ListGroup = ({
           );
         })}
       </Reorder.Group>
+
       <Button type="plus" onClick={() => setDialogShow(!dialogShow)}>
         <span className="text-word/100 mr-2 font-600">add item</span>
       </Button>
