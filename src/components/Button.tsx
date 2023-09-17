@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ReactNode } from "react";
 
 interface Props {
-  type?: "delete" | "plus";
+  type?: "delete" | "plus" | "solid";
   children?: ReactNode;
   onClick: () => void;
 }
@@ -25,7 +25,11 @@ const Button = ({ type, onClick, children }: Props) => {
       ${
         type === "delete"
           ? "bg-red/10 hover:bg-red/20"
-          : "bg-word/20 hover:bg-word/40"
+          : type === "plus"
+          ? "bg-word/20 hover:bg-word/40"
+          : type === "solid"
+          ? "bg-check/100"
+          : ""
       }
       `}
       whileTap={{ scale: 0.97 }}

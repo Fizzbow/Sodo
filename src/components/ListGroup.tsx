@@ -11,6 +11,7 @@ import Button from "./Button";
 import DragIcon from "./DragIcon";
 import { TodoList } from "../pages/todo/TodoCard";
 import Dialog from "../components/Dialog";
+import { v4 as uuidv4 } from "uuid";
 export interface TodoItem {
   text: string;
   caption: string;
@@ -22,6 +23,7 @@ interface ListProps {
   list: Array<TodoItem>;
   onChangeItem: (item: TodoItem) => void;
   onDeleteItem: (item: TodoItem) => void;
+  onAddItem: (item: TodoItem) => void;
   onChangeList: (list: TodoList) => void;
 }
 
@@ -30,6 +32,7 @@ const ListGroup = ({
   onChangeItem,
   onDeleteItem,
   onChangeList,
+  onAddItem,
 }: ListProps) => {
   const [scoped, animate] = useAnimate();
   /** dialog state */
@@ -74,7 +77,14 @@ const ListGroup = ({
         <span className="text-word/100 mr-2 font-600">add item</span>
       </Button>
 
-      {dialogShow && <Dialog />}
+      {dialogShow && (
+        <Dialog
+          onCancel={(val) => setDialogShow(val)}
+          onConfirm={(val) =>
+            onAddItem({ checked: false, text: val, caption: "", id: uuidv4() })
+          }
+        />
+      )}
     </>
   );
 };

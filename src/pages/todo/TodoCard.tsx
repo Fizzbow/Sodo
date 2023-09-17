@@ -60,6 +60,11 @@ const TodoCard = ({ todoList, changeTodo }: Props) => {
               onChangeList={(list) => {
                 changeTodo({ ...item, list });
               }}
+              onAddItem={(i) => {
+                const { list } = item;
+                list.push(i);
+                changeTodo({ ...item, list });
+              }}
               onChangeItem={(todoItem) => changeItem(todoItem, item)}
               onDeleteItem={(todoItem) => deleteItem(todoItem, item)}
               list={item.list}
