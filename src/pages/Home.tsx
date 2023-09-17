@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
 import TodoCard, { TodoList } from "./todo/TodoCard";
-import TODO_LIST from "../constant/localstorage.contant";
+import { TODO_LIST } from "../constant/todo.constant";
 import { v4 as uuidv4 } from "uuid";
+
+// TODO: caption integrate / multi-todoCard
 
 const todoList: TodoList[] = [
   {
-    heading: "👩‍💻HOME",
+    heading: "👩‍💻CODING PLAN",
     id: "",
     list: [
-      { text: "an item", caption: "captions", id: "" },
-      { text: "items", caption: "captions", id: "" },
-      { text: "new york", caption: "captions", id: "" },
+      { text: "Set Up React Project", caption: "captions", id: "" },
+      { text: "Design UI Components", caption: "captions", id: "" },
+      { text: "Integrate UnoCSS", caption: "captions", id: "" },
       {
-        text: "new york",
+        text: "Implement State Management",
         caption: "captions",
         id: "",
       },
@@ -61,7 +63,7 @@ function Home() {
   }
   return (
     <>
-      <div flex="~ row " w-full>
+      <div flex="~ row " w-full flex-1>
         <div grid flex-1>
           <TodoCard todoList={todo} changeTodo={handleChangeTodo} />
         </div>

@@ -4,10 +4,11 @@ import Home from "./pages/Home";
 import { createContext } from "react";
 import themes, { Theme } from "./contexts/themes";
 import ThemeToggle from "./components/ThemeToggle";
+import Contact from "./components/Contact";
 
-const stateTheme: Theme["themeId"] = localStorage.getItem(
+const stateTheme = localStorage.getItem(
   "react_todo_theme_Id"
-);
+) as Theme["themeId"];
 
 function initFilterThemes(): Theme[] {
   if (stateTheme) {
@@ -26,7 +27,8 @@ function initCurrentTheme(): Theme["themeId"] {
 function App() {
   const ThemeContext = createContext({
     theme: "",
-    setTheme: (themeId: Theme["themeId"]) => {},
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    setTheme: (_themeId: Theme["themeId"]) => {},
   });
 
   const [theme, setTheme] = useState(initCurrentTheme);
@@ -42,10 +44,12 @@ function App() {
       <ThemeContext.Provider value={{ theme, setTheme }}>
         <div
           overflow-auto
-          className={`themed p-6 w-full h-full transition-background-color-2 transition-color-2 ${theme} bg-backdrop`}
+          flex="~ col"
+          className={`themed  p-6 w-full h-full transition-background-color-2 transition-color-2 ${theme} bg-backdrop`}
         >
           <ThemeToggle themes={filteredThemes} setTheme={toggleTheme} />
           <Home />
+          <Contact />
         </div>
       </ThemeContext.Provider>
     </>

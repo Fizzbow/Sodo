@@ -24,7 +24,7 @@ interface ListProps {
   onChangeItem: (item: TodoItem) => void;
   onDeleteItem: (item: TodoItem) => void;
   onAddItem: (item: TodoItem) => void;
-  onChangeList: (list: TodoList) => void;
+  onChangeList: (list: TodoList["list"]) => void;
 }
 
 const ListGroup = ({
