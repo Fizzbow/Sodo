@@ -1,4 +1,3 @@
-import { Reorder } from "framer-motion";
 import ListGroup from "../../components/ListGroup";
 import { TodoItem } from "../../components/ListGroup";
 
@@ -60,7 +59,6 @@ const TodoCard = ({ todoList, changeTodo }: Props) => {
             <ListGroup
               onChangeList={(list) => {
                 changeTodo({ ...item, list });
-                console.log(list);
               }}
               onChangeItem={(todoItem) => changeItem(todoItem, item)}
               onDeleteItem={(todoItem) => deleteItem(todoItem, item)}

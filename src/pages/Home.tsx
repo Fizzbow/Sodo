@@ -1,31 +1,46 @@
 import { useEffect, useState } from "react";
 import TodoCard, { TodoList } from "./todo/TodoCard";
-import { motion } from "framer-motion";
 import TODO_LIST from "../constant/localstorage.contant";
-import Dialog from "../components/Dialog";
-import Button from "../components/Button";
+import { v4 as uuidv4 } from "uuid";
 
 const todoList: TodoList[] = [
   {
     heading: "👩‍💻HOME",
-    id: "ksjsasdasxzxcxz",
+    id: "",
     list: [
-      { text: "an item", caption: "captions", id: "kasdasdsj" },
-      { text: "items", caption: "captions", id: "ksvfvfvj" },
-      { text: "new york", caption: "captions", id: "ksjq][wp][p]" },
+      { text: "an item", caption: "captions", id: "" },
+      { text: "items", caption: "captions", id: "" },
+      { text: "new york", caption: "captions", id: "" },
       {
         text: "new york",
         caption: "captions",
-        id: "kssadadqwoioij",
+        id: "",
       },
     ],
   },
 ];
 
+function addUuid(list: TodoList[]): TodoList[] {
+  const resultArr = list.map((item) => {
+    if (!item) return;
+    item.id = uuidv4();
+    for (const i in item) {
+      const val = item[i as keyof TodoList];
+      if (Array.isArray(val)) {
+        val.forEach((i) => {
+          i.id = uuidv4();
+        });
+      }
+    }
+    return item;
+  });
+  return resultArr as TodoList[];
+}
+
 function initTodoList(): TodoList[] {
   const storageTodoList = localStorage.getItem(TODO_LIST);
 
-  if (!storageTodoList) return todoList;
+  if (!storageTodoList) return addUuid(todoList);
   return JSON.parse(storageTodoList);
 }
 

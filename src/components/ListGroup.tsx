@@ -1,5 +1,4 @@
 import {
-  MotionValue,
   Reorder,
   useAnimate,
   useDragControls,
@@ -7,10 +6,11 @@ import {
 } from "framer-motion";
 import "../style/checkbox.css";
 import { stagger } from "framer-motion/dom";
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 import Button from "./Button";
 import DragIcon from "./DragIcon";
 import { TodoList } from "../pages/todo/TodoCard";
+import Dialog from "../components/Dialog";
 export interface TodoItem {
   text: string;
   caption: string;
@@ -32,6 +32,8 @@ const ListGroup = ({
   onChangeList,
 }: ListProps) => {
   const [scoped, animate] = useAnimate();
+  /** dialog state */
+  const [dialogShow, setDialogShow] = useState(false);
 
   /** checkbox animation */
   useEffect(() => {
@@ -49,24 +51,31 @@ const ListGroup = ({
   }, [list]);
 
   return (
-    <Reorder.Group
-      flex-1
-      axis="y"
-      values={list}
-      onReorder={onChangeList}
-      ref={scoped}
-    >
-      {list.map((todo) => {
-        return (
-          <CheckboxItem
-            todo={todo}
-            key={todo.id}
-            onChangeItem={onChangeItem}
-            onDeleteItem={onDeleteItem}
-          />
-        );
-      })}
-    </Reorder.Group>
+    <>
+      <Reorder.Group
+        flex-1
+        axis="y"
+        values={list}
+        onReorder={onChangeList}
+        ref={scoped}
+      >
+        {list.map((todo) => {
+          return (
+            <CheckboxItem
+              todo={todo}
+              key={todo.id}
+              onChangeItem={onChangeItem}
+              onDeleteItem={onDeleteItem}
+            />
+          );
+        })}
+      </Reorder.Group>
+      <Button type="plus" onClick={() => setDialogShow(!dialogShow)}>
+        <span className="text-word/100 mr-2 font-600">add item</span>
+      </Button>
+
+      {dialogShow && <Dialog />}
+    </>
   );
 };
 
@@ -98,7 +107,7 @@ const CheckboxItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
         flex
         flex-row 
         items-center 
-        gap-10"
+        gap-5"
       >
         <div
           w-full
@@ -144,7 +153,7 @@ const CheckboxItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
           </div>
         </div>
         <Button type="delete" onClick={() => onDeleteItem(todo)} />
-        <DragIcon cursor-grab dragControls={controls} />
+        <DragIcon dragControls={controls} />
       </Reorder.Item>
     </>
   );

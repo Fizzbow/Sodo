@@ -7,6 +7,7 @@ interface Props {
 export default function DragIcon({ dragControls }: Props) {
   return (
     <svg
+      className="cursor-grab"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 39 39"
       width="39"

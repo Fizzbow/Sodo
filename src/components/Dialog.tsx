@@ -1,5 +1,7 @@
 import "../style/dialog.css";
 
+interface Props {}
+
 const Dialog = () => {
   return (
     <div className="dialog">
