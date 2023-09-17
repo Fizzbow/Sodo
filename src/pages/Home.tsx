@@ -10,11 +10,15 @@ const todoList: TodoList[] = [
     heading: "👩‍💻CODING PLAN",
     id: "",
     list: [
-      { text: "Set Up React Project", caption: "captions", id: "" },
+      {
+        text: "Initialize TypeScript in React project",
+        caption: "captions",
+        id: "",
+      },
       { text: "Design UI Components", caption: "captions", id: "" },
       { text: "Integrate UnoCSS", caption: "captions", id: "" },
       {
-        text: "Implement State Management",
+        text: "Animation with Framer Motion",
         caption: "captions",
         id: "",
       },

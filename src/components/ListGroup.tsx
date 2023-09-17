@@ -107,7 +107,6 @@ const CheckboxItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
       <Reorder.Item
         value={todo}
         id={todo.id}
-        dragListener={false}
         style={{ y }}
         dragControls={controls}
         className=" 
@@ -150,7 +149,7 @@ const CheckboxItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
             h-6
           />
 
-          <div flex="~ col">
+          <div flex="~ col " flex-1>
             <input
               type="text"
               value={todo.text}
