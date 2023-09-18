@@ -1,13 +1,14 @@
 # React TodoList
 
-![image info](./src/assets/product.heic)
+![image info](./src/assets/product.jpeg)
 
 ## Stack
 
-- react
-- vite
-- unocss
-- framer-motion
+- React
+- Typescript
+- Vite
+- Unocss
+- Framer-motion
 
 ## demo
 
