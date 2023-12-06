@@ -13,8 +13,15 @@ const Dialog = ({ onCancel, onConfirm }: Props) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
-    if (inputRef) inputRef.current!.focus();
+    inputRef.current?.focus();
   }, []);
+
+  function handleAcceptAddItem() {
+    if (!inputVal) return onCancel(false);
+
+    onConfirm(inputVal);
+    onCancel(false);
+  }
 
   return (
     <div className="dialog" onClick={() => onCancel(false)}>
@@ -57,12 +64,7 @@ const Dialog = ({ onCancel, onConfirm }: Props) => {
           />
         </section>
 
-        <Button
-          type="solid"
-          onClick={() => {
-            onConfirm(inputVal), onCancel(false);
-          }}
-        >
+        <Button type="solid" onClick={handleAcceptAddItem}>
           <span className="text-white font-600 w-full">OK</span>
         </Button>
       </motion.div>
