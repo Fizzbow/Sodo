@@ -46,6 +46,7 @@ const Dialog = ({ onCancel, onConfirm }: Props) => {
             bg-transparent
             focus="border-b-check transition duration-300"
             value={inputVal}
+            placeholder="Deploy to Vercel..."
             onChange={(e) => setInputVal(e.target.value)}
           />
         </section>
