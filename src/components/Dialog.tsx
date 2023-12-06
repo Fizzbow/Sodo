@@ -12,8 +12,9 @@ const Dialog = ({ onCancel, onConfirm }: Props) => {
   const [inputVal, setInputVal] = useState("");
 
   return (
-    <div className="dialog">
+    <div className="dialog" onClick={() => onCancel(false)}>
       <motion.div
+        onClick={(e) => e.stopPropagation()}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
