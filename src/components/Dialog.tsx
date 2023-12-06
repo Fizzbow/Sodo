@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../style/dialog.css";
 import Button from "./Button";
 import { motion } from "framer-motion";
@@ -10,6 +10,11 @@ interface Props {
 
 const Dialog = ({ onCancel, onConfirm }: Props) => {
   const [inputVal, setInputVal] = useState("");
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    if (inputRef) inputRef.current!.focus();
+  }, []);
 
   return (
     <div className="dialog" onClick={() => onCancel(false)}>
@@ -48,6 +53,7 @@ const Dialog = ({ onCancel, onConfirm }: Props) => {
             value={inputVal}
             placeholder="Deploy to Vercel..."
             onChange={(e) => setInputVal(e.target.value)}
+            ref={inputRef}
           />
         </section>
 
