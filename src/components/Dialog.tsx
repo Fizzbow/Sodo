@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../style/dialog.css";
 import Button from "./Button";
 import { motion } from "framer-motion";
@@ -10,10 +10,23 @@ interface Props {
 
 const Dialog = ({ onCancel, onConfirm }: Props) => {
   const [inputVal, setInputVal] = useState("");
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  function handleAcceptAddItem() {
+    if (!inputVal) return onCancel(false);
+
+    onConfirm(inputVal);
+    onCancel(false);
+  }
 
   return (
-    <div className="dialog">
+    <div className="dialog" onClick={() => onCancel(false)}>
       <motion.div
+        onClick={(e) => e.stopPropagation()}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -45,16 +58,13 @@ const Dialog = ({ onCancel, onConfirm }: Props) => {
             bg-transparent
             focus="border-b-check transition duration-300"
             value={inputVal}
+            placeholder="Deploy to Vercel..."
             onChange={(e) => setInputVal(e.target.value)}
+            ref={inputRef}
           />
         </section>
 
-        <Button
-          type="solid"
-          onClick={() => {
-            onConfirm(inputVal), onCancel(false);
-          }}
-        >
+        <Button type="solid" onClick={handleAcceptAddItem}>
           <span className="text-white font-600 w-full">OK</span>
         </Button>
       </motion.div>
