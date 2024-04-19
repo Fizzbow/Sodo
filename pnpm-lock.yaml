@@ -25,6 +25,9 @@ dependencies:
     version: 32.5.0
 
 devDependencies:
+  '@iconify/json':
+    specifier: ^2.2.201
+    version: 2.2.201
   '@types/react':
     specifier: ^18.2.15
     version: 18.2.15
@@ -607,6 +610,13 @@ packages:
 
   /@humanwhocodes/object-schema@1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
+    dev: true
+
+  /@iconify/json@2.2.201:
+    resolution: {integrity: sha512-5jM9TAa55YSEfx2WX1/GsHL9FSSH1PsA38V3p26SDmnOSmfb3V7r5yBgO8oIFkXdFQFk59MgESEOziapNtTGkw==}
+    dependencies:
+      '@iconify/types': 2.0.0
+      pathe: 1.1.2
     dev: true
 
   /@iconify/types@2.0.0:
@@ -3022,6 +3032,10 @@ packages:
 
   /pathe@1.1.1:
     resolution: {integrity: sha512-d+RQGp0MAYTIaDBIMmOfMwz3E+LOZnxx1HZd5R18mmCZY0QBlK0LDZfPc8FW8Ed2DlvsuE6PRjroDY+wg4+j/Q==}
+    dev: true
+
+  /pathe@1.1.2:
+    resolution: {integrity: sha512-whLdWMYL2TwI08hn8/ZqAbrVemu0LNaNNJZX73O6qaIdCTfXutsLhMkjdENX0qhsQ9uIimo4/aQOmXkoon2nDQ==}
     dev: true
 
   /pend@1.2.0:
