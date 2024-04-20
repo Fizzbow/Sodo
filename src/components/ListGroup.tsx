@@ -60,7 +60,7 @@ const ListGroup = ({
         values={list}
         onReorder={onChangeList}
         ref={scoped}
-        className="mb-4 flex flex-col gap-5"
+        className="mb-4  flex flex-col gap-5"
       >
         {list.map((todo) => {
           return (
@@ -75,7 +75,7 @@ const ListGroup = ({
       </Reorder.Group>
 
       <Button type="plus" onClick={() => setDialogShow(!dialogShow)}>
-        <span className="text-word/100 mr-2 font-600">Add tem</span>
+        <span className="text-word/100 mr-2 font-600">Add Item</span>
       </Button>
 
       {dialogShow && (
@@ -110,7 +110,7 @@ const CheckboxItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
         style={{ y }}
         dragControls={controls}
         className="px-4 py-3 bg-tint-1 rounded-2
-        flex flex-row items-center gap-5"
+        flex flex-row items-center gap-5 shadow-xl"
       >
         <div w-full duration-300 flex="~ row items-center gap-2">
           <input
@@ -140,7 +140,7 @@ const CheckboxItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
               type="text"
               value={todo.text}
               onChange={(e) => onChangeItem({ ...todo, text: e.target.value })}
-              className={`w-full py-3 px-2 rounded-1 hover:bg-tint-2:30 transition-colors duration-300 appearance-none bg-transparent border-none outline-none text-16px ${
+              className={`w-full py-3 px-2 rounded-1 font-Switzer font-500  hover:bg-tint-2:30 transition-colors duration-300 appearance-none bg-transparent border-none outline-none text-16px ${
                 todo.checked ? " text-tint-2 line-through" : "text-tint-3"
               }`}
             />

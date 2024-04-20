@@ -13,6 +13,7 @@ const Button = ({ type, onClick, children }: Props) => {
       onClick={onClick}
       className={`
       flex
+      font-Switzer font-500
       justify-center
       items-center
       p-2
