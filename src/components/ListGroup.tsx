@@ -60,7 +60,7 @@ const ListGroup = ({
         values={list}
         onReorder={onChangeList}
         ref={scoped}
-        className="mb-4"
+        className="mb-4 flex flex-col gap-6"
       >
         {list.map((todo) => {
           return (
@@ -75,7 +75,7 @@ const ListGroup = ({
       </Reorder.Group>
 
       <Button type="plus" onClick={() => setDialogShow(!dialogShow)}>
-        <span className="text-word/100 mr-2 font-600">add item</span>
+        <span className="text-word/100 mr-2 font-600">Add tem</span>
       </Button>
 
       {dialogShow && (
@@ -110,7 +110,6 @@ const CheckboxItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
         style={{ y }}
         dragControls={controls}
         className=" 
-        my-2
         p-4
         bg-tint-1
         rounded-1
