@@ -43,7 +43,7 @@ function App() {
     <>
       <ThemeContext.Provider value={{ theme, setTheme }}>
         <div
-          overflow-auto
+          overflow-hidden
           flex="~ col"
           className={`themed  p-6 w-full h-full transition-background-color-2 transition-color-2 ${theme} bg-backdrop`}
         >
