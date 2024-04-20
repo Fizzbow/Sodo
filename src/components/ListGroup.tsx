@@ -60,7 +60,7 @@ const ListGroup = ({
         values={list}
         onReorder={onChangeList}
         ref={scoped}
-        className="mb-4 flex flex-col gap-6"
+        className="mb-4 flex flex-col gap-5"
       >
         {list.map((todo) => {
           return (
@@ -109,27 +109,14 @@ const CheckboxItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
         id={todo.id}
         style={{ y }}
         dragControls={controls}
-        className=" 
-        p-4
-        bg-tint-1
-        rounded-1
-        flex
-        flex-row 
-        items-center 
-        gap-5"
+        className="px-4 py-3 bg-tint-1 rounded-2
+        flex flex-row items-center gap-5"
       >
-        <div
-          w-full
-          rounded-1
-          p-2
-          duration-300
-          flex="~ row items-center gap-4"
-          className="hover:bg-tint-2:30"
-        >
+        <div w-full duration-300 flex="~ row items-center gap-2">
           <input
             onChange={(e) => checkedChange(todo, e.target.checked)}
             checked={todo.checked || false}
-            className="checkboxChecked"
+            className="checkboxChecked "
             type="checkbox"
             outline-none
             cursor-pointer
@@ -153,7 +140,7 @@ const CheckboxItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
               type="text"
               value={todo.text}
               onChange={(e) => onChangeItem({ ...todo, text: e.target.value })}
-              className={`w-full transition-colors duration-300 appearance-none bg-transparent border-none outline-none text-16px ${
+              className={`w-full py-3 px-2 rounded-1 hover:bg-tint-2:30 transition-colors duration-300 appearance-none bg-transparent border-none outline-none text-16px ${
                 todo.checked ? " text-tint-2 line-through" : "text-tint-3"
               }`}
             />

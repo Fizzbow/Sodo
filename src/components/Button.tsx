@@ -20,7 +20,7 @@ const Button = ({ type, onClick, children }: Props) => {
       outline-none
       text-center
       cursor-pointer
-      rounded-1
+      rounded-2
       flex-row
       ${
         type === "delete"
@@ -48,27 +48,7 @@ const Button = ({ type, onClick, children }: Props) => {
           </svg>
         </>
       ) : type === "delete" ? (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 100 125"
-          width="28"
-          height="28"
-        >
-          <g transform="translate(50, 50) translate(-50, -28)">
-            <path
-              className="fill-red/100"
-              d="M40,76.29a4,4,0,0,0,4-4V51a4,4,0,0,0-8,0V72.29A4,4,0,0,0,40,76.29Z"
-            />
-            <path
-              className="fill-red/100"
-              d="M60,76.29a4,4,0,0,0,4-4V51a4,4,0,0,0-8,0V72.29A4,4,0,0,0,60,76.29Z"
-            />
-            <path
-              className="fill-red/100"
-              d="M82.67,16.33H64.31V14.75a8,8,0,0,0-8-8H43.69a8,8,0,0,0-8,8v1.58H17.33a4,4,0,0,0-4,4v16a4,4,0,0,0,4,4h4.4V79.25a14,14,0,0,0,14,14H64.27a14,14,0,0,0,14-14V40.33h4.4a4,4,0,0,0,4-4v-16A4,4,0,0,0,82.67,16.33Zm-39-1.58H56.31v1.58H43.69ZM70.27,79.25a6,6,0,0,1-6,6H35.73a6,6,0,0,1-6-6V40.33H70.27Zm8.4-46.91H21.33v-8H78.67Z"
-            />
-          </g>
-        </svg>
+        <div className="i-ri:delete-bin-5-line text-6 text-red/100" />
       ) : (
         <>{children}</>
       )}
