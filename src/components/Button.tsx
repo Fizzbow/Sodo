@@ -12,7 +12,7 @@ const Button = ({ type, onClick, children }: Props) => {
     <motion.button
       onClick={onClick}
       className={`
-      flex
+      flex flex-row
       font-Switzer font-500
       justify-center
       items-center
@@ -22,7 +22,6 @@ const Button = ({ type, onClick, children }: Props) => {
       text-center
       cursor-pointer
       rounded-2
-      flex-row
       ${
         type === "delete"
           ? "bg-red/10 hover:bg-red/20"
