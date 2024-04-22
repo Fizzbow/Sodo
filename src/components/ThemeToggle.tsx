@@ -34,7 +34,7 @@ const ThemeToggle = ({ themes, setTheme }: Props) => {
       <div className="   flex flex-row items-center  justify-center top-[8px] right-[-50px]  relative  w-50 h-50">
         <motion.button
           cursor-pointer
-          className="bg-word/100
+          className="bg-white
           z-1 p-2
           text-backdrop/100 font-700 text-18px
           flex justify-center

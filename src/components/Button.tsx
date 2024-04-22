@@ -1,16 +1,15 @@
-import { motion } from "framer-motion";
-import { ReactNode } from "react";
+import { MotionProps, motion } from "framer-motion";
 
-interface Props {
-  type?: "delete" | "plus" | "solid";
-  children?: ReactNode;
+interface Props extends MotionProps {
+  handleType?: "delete" | "plus" | "solid";
   onClick: () => void;
 }
 
-const Button = ({ type, onClick, children }: Props) => {
+const Button = ({ handleType, onClick, ...props }: Props) => {
   return (
     <motion.button
       onClick={onClick}
+      {...props}
       className={`
       flex flex-row
       font-Switzer font-500
@@ -23,34 +22,23 @@ const Button = ({ type, onClick, children }: Props) => {
       cursor-pointer
       rounded-2
       ${
-        type === "delete"
+        handleType === "delete"
           ? "bg-red/10 hover:bg-red/20"
-          : type === "plus"
+          : handleType === "plus"
           ? "bg-word/20 hover:bg-word/40"
-          : type === "solid"
+          : handleType === "solid"
           ? "bg-check/100"
           : ""
       }
       `}
       whileTap={{ scale: 0.97 }}
     >
-      {type === "plus" ? (
-        <>
-          {children}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="15"
-            height="15"
-            viewBox="0 0 20 20"
-          >
-            <path d="M8 2h4v16h-4z" className="fill-word/100" />
-            <path d="M2 8h16v4H2z" className="fill-word/100" />
-          </svg>
-        </>
-      ) : type === "delete" ? (
+      {handleType === "plus" ? (
+        <div className="i-gravity-ui:plus text-6 font-600 text-word/100" />
+      ) : handleType === "delete" ? (
         <div className="i-ri:delete-bin-5-line text-6 text-red/100" />
       ) : (
-        <>{children}</>
+        <>{props.children}</>
       )}
     </motion.button>
   );

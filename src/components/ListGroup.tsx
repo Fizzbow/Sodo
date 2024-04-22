@@ -74,9 +74,7 @@ const ListGroup = ({
         })}
       </Reorder.Group>
 
-      <Button type="plus" onClick={() => setDialogShow(!dialogShow)}>
-        <span className="text-word/100 mr-2 font-600">Add Item</span>
-      </Button>
+      <Button handleType="plus" onClick={() => setDialogShow(!dialogShow)} />
 
       {dialogShow && (
         <Dialog
@@ -148,7 +146,7 @@ const CheckboxItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
             {/* {caption && <span text-tint-2>{caption}</span>} */}
           </div>
         </div>
-        <Button type="delete" onClick={() => onDeleteItem(todo)} />
+        <Button handleType="delete" onClick={() => onDeleteItem(todo)} />
         <DragIcon dragControls={controls} />
       </Reorder.Item>
     </>
