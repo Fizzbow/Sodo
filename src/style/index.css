@@ -7,6 +7,19 @@ body,
   margin: 0;
   padding: 0;
   width: 100%;
+  cursor: url("../assets/cursor/cursor.svg"), auto;
+}
+
+.cursor-pointer,
+button {
+  cursor: url("../assets/cursor/pointer.svg"), auto !important;
+}
+.cursor-grab {
+  cursor: url("../assets/cursor/grab.svg"), auto !important;
+}
+
+input {
+  cursor: url("../assets/cursor/text.svg"), auto !important;
 }
 
 html,

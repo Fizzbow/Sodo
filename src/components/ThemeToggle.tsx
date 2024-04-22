@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import themes, { Theme } from "../contexts/themes";
+import { Theme } from "../contexts/themes";
 
 interface Props {
   themes: Array<Theme>;

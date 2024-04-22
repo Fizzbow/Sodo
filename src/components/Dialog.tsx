@@ -30,7 +30,7 @@ const Dialog = ({ onCancel, onConfirm }: Props) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="dialog_content flex flex-col rounded-1"
+        className="dialog_content flex flex-col rounded-2"
       >
         <header flex="~ row justify-end">
           <Button type="solid" onClick={() => onCancel(false)}>
