@@ -2,10 +2,11 @@ import { MotionProps, motion } from "framer-motion";
 
 interface Props extends MotionProps {
   handleType?: "delete" | "plus" | "solid";
+  className?: string;
   onClick: () => void;
 }
 
-const Button = ({ handleType, onClick, ...props }: Props) => {
+const Button = ({ handleType, className, onClick, ...props }: Props) => {
   return (
     <motion.button
       onClick={onClick}
@@ -20,12 +21,13 @@ const Button = ({ handleType, onClick, ...props }: Props) => {
       outline-none
       text-center
       cursor-pointer
-      rounded-2
+      rounded-1
+      ${className}
       ${
         handleType === "delete"
           ? "bg-red/10 hover:bg-red/20"
           : handleType === "plus"
-          ? "bg-word/20 hover:bg-word/40"
+          ? "hover:bg-word/20 bg-transparent"
           : handleType === "solid"
           ? "bg-check/100"
           : ""
@@ -34,7 +36,10 @@ const Button = ({ handleType, onClick, ...props }: Props) => {
       whileTap={{ scale: 0.97 }}
     >
       {handleType === "plus" ? (
-        <div className="i-gravity-ui:plus text-6 font-600 text-word/100" />
+        <div className="flex flex-row gap-3 items-center text-word/60">
+          <div className="i-gravity-ui:plus text-5 font-600 " />
+          <span>New Item</span>
+        </div>
       ) : handleType === "delete" ? (
         <div className="i-ri:delete-bin-5-line text-6 text-red/100" />
       ) : (

@@ -9,7 +9,9 @@ body,
   width: 100%;
   cursor: url("../assets/cursor/cursor.svg"), auto;
 }
-
+.cursor_class {
+  fill: red !important;
+}
 .cursor-pointer,
 button {
   cursor: url("../assets/cursor/pointer.svg"), auto !important;

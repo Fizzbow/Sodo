@@ -74,7 +74,13 @@ const ListGroup = ({
         })}
       </Reorder.Group>
 
-      <Button handleType="plus" onClick={() => setDialogShow(!dialogShow)} />
+      <section className="flex flex-row justify-start">
+        <Button
+          style={{ width: "130px" }}
+          handleType="plus"
+          onClick={() => setDialogShow(!dialogShow)}
+        />
+      </section>
 
       {dialogShow && (
         <Dialog
@@ -111,29 +117,38 @@ const CheckboxItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
         flex flex-row items-center gap-5 shadow-xl"
       >
         <div w-full duration-300 flex="~ row items-center gap-2">
-          <input
-            onChange={(e) => checkedChange(todo, e.target.checked)}
-            checked={todo.checked || false}
-            className="checkboxChecked "
-            type="checkbox"
-            outline-none
-            cursor-pointer
-            relative
-            text-center
-            border-2
-            border-solid
-            appearance-none
-            border-tint-2
-            rounded-full
-            checked-border-0
-            checked-bg-check
-            checked-relative
-            checked-text-tint-1
-            w-6
-            h-6
-          />
+          <div
+            flex="~ row items-center justify-center "
+            className="checkboxChecked rounded-full outline-2 outline-solid outline-check"
+          >
+            <input
+              onChange={(e) => checkedChange(todo, e.target.checked)}
+              checked={todo.checked || false}
+              className="checkInput cursor-pointer bg-check/30"
+              type="checkbox"
+              id={`checkbox${todo.id}`}
+              outline-none
+              relative
+              text-center
+              appearance-none
+              rounded-full
+              checked-border-0
+              checked-bg-check
+              checked-relative
+              checked-text-tint-1
+              w-6
+              h-6
+            />
 
-          <div flex="~ col " flex-1>
+            <label
+              htmlFor={`checkbox${todo.id}`}
+              className="checkedIcon flex flex-row  cursor-pointer justify-center items-center  absolute"
+            >
+              <div className="i-foundation:check text-6  text-tint-1" />
+            </label>
+          </div>
+
+          <div flex="~ col 1">
             <input
               type="text"
               value={todo.text}
