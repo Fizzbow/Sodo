@@ -1,11 +1,6 @@
-export type ThemeColor = "green" | "purple" | "dark" | "pinky";
-export interface Theme {
-  themeId: ThemeColor;
-  color: string;
-  path?: string;
-}
+import { Theme } from "../types";
 
-const themes: Theme[] = [
+const THEMES: Theme[] = [
   {
     themeId: "green",
     color: "#46834D",
@@ -14,4 +9,4 @@ const themes: Theme[] = [
   { themeId: "dark", color: "#23325A" },
   { themeId: "pinky", color: "#F8EDD9" },
 ];
-export default themes;
+export default THEMES;
