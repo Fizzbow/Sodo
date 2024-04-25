@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Theme } from "../contexts/themes";
+import { Theme } from "../constant/themes.constant";
 
 interface Props {
   themes: Array<Theme>;
@@ -36,7 +36,7 @@ const ThemeToggle = ({ themes, setTheme }: Props) => {
           cursor-pointer
           className="bg-white
           z-1 p-2
-          text-backdrop/100 font-700 text-18px
+          text-primary/100 font-700 text-18px
           flex justify-center
           absolute top-[50%] left-[50%] translate-[-50%]
           rounded-[50%]

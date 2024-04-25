@@ -7,10 +7,10 @@ import {
 import "../style/checkbox.css";
 import { stagger } from "framer-motion/dom";
 import { useEffect, useState } from "react";
-import Button from "./Button";
+import Button from "./base/Button";
 import DragIcon from "./DragIcon";
 import { TodoList } from "../pages/todo/TodoCard";
-import Dialog from "../components/Dialog";
+import Dialog from "./base/Dialog";
 import { v4 as uuidv4 } from "uuid";
 export interface TodoItem {
   text: string;
@@ -75,11 +75,13 @@ const ListGroup = ({
       </Reorder.Group>
 
       <section className="flex flex-row justify-start">
-        <Button
-          style={{ width: "130px" }}
-          handleType="plus"
+        <div
+          className="text-secondary/100 flex flex-row cursor-pointer gap-2 py-4 px-2 w-28 items-center"
           onClick={() => setDialogShow(!dialogShow)}
-        />
+        >
+          <div className="i-gravity-ui:plus text-5 font-600 " />
+          <span>New Item</span>
+        </div>
       </section>
 
       {dialogShow && (
@@ -161,7 +163,12 @@ const CheckboxItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
             {/* {caption && <span text-tint-2>{caption}</span>} */}
           </div>
         </div>
-        <Button handleType="delete" onClick={() => onDeleteItem(todo)} />
+        <Button
+          handleType="delete"
+          color="error"
+          onClick={() => onDeleteItem(todo)}
+          startIcon={<div className="i-ri:delete-bin-5-line text-6 " />}
+        />
         <DragIcon dragControls={controls} />
       </Reorder.Item>
     </>

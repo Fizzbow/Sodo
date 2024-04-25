@@ -1,5 +1,6 @@
+export type ThemeColor = "green" | "purple" | "dark" | "pinky";
 export interface Theme {
-  themeId: "green" | "purple" | "dark" | "pinky";
+  themeId: ThemeColor;
   color: string;
   path?: string;
 }

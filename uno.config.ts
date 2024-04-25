@@ -10,13 +10,14 @@ import {
   presetWebFonts,
   transformerAttributifyJsx,
 } from "unocss";
+
 import { Theme } from "unocss/preset-mini";
 
 export default defineConfig({
   theme: {
     colors: {
-      backdrop: "rgba(var(--backdrop) , %alpha)",
-      word: "rgba(var(--word) , %alpha)",
+      primary: "rgba(var(--primary) , %alpha)",
+      secondary: "rgba(var(--secondary) , %alpha)",
       tint: {
         1: "rgba(var(--tint-1) , %alpha)",
         2: "rgba(var(--tint-2) , %alpha)",
@@ -24,6 +25,7 @@ export default defineConfig({
       },
       check: "rgba(var(--check), %alpha)",
       checkedOutline: "rgba(var(--checkedOutline),%alpha)",
+      error: "rgba(var(--error),%alpha)",
     },
     breakpoints: {
       xxs: "0px",

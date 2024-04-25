@@ -2,7 +2,7 @@ import { useState } from "react";
 import Home from "./pages/Home";
 
 import { createContext } from "react";
-import themes, { Theme } from "./contexts/themes";
+import themes, { Theme } from "./constant/themes.constant";
 import ThemeToggle from "./components/ThemeToggle";
 import Contact from "./components/Contact";
 
@@ -45,7 +45,7 @@ function App() {
         <div
           overflow-hidden
           flex="~ col"
-          className={`themed font-Switzer  font-500  p-6 w-full h-full transition-background-color-2 transition-color-2 ${theme} bg-backdrop`}
+          className={`themed font-Switzer  font-500  p-6 w-full h-full transition-background-color-2 transition-color-2 ${theme} bg-primary`}
         >
           <ThemeToggle themes={filteredThemes} setTheme={toggleTheme} />
           <Home />
