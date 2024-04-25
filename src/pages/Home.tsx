@@ -67,7 +67,7 @@ function Home() {
   }
   return (
     <>
-      <div flex="~ row " w-full flex-1>
+      <div flex="~ row 1" className="px-6 ">
         <div grid flex-1>
           <TodoCard todoList={todo} changeTodo={handleChangeTodo} />
         </div>

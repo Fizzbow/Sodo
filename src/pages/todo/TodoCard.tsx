@@ -39,13 +39,13 @@ const TodoCard = ({ todoList, changeTodo }: Props) => {
       {todoList.map((item) => {
         return (
           <div key={item.id} flex="~ col">
-            <div
+            <header
               flex="~ row items-center"
               className="hover:bg-tint-2:50 cursor-pointer py-3 px-2 rounded-1 mb-4"
             >
               <input
                 type="text"
-                className="w-full outline-none font-600 text-word border-none text-7"
+                className="w-full font-Poppins outline-none font-700 text-word border-none text-7"
                 name="headingInput"
                 bg-transparent
                 appearance-none
@@ -54,7 +54,7 @@ const TodoCard = ({ todoList, changeTodo }: Props) => {
                   changeTodo({ ...item, heading: e.target.value })
                 }
               />
-            </div>
+            </header>
 
             <ListGroup
               onChangeList={(list) => {

@@ -7,6 +7,7 @@ import {
   presetIcons,
   presetTypography,
   presetUno,
+  presetWebFonts,
   transformerAttributifyJsx,
 } from "unocss";
 import { Theme } from "unocss/preset-mini";
@@ -22,6 +23,7 @@ export default defineConfig({
         3: "rgba(var(--tint-3) , %alpha)",
       },
       check: "rgba(var(--check), %alpha)",
+      checkedOutline: "rgba(var(--checkedOutline),%alpha)",
     },
     breakpoints: {
       xxs: "0px",
@@ -52,6 +54,25 @@ export default defineConfig({
   safelist: [],
   presets: [
     presetUno(),
+    presetWebFonts({
+      provider: "fontshare",
+      fonts: {
+        Poppins: [
+          { name: "Poppins", weights: ["400", "500", "600", "700"] },
+          {
+            name: "sans-serif",
+            provider: "none",
+          },
+        ],
+        Switzer: [
+          { name: "Switzer", weights: ["300", "400", "500", "600", "800"] },
+          {
+            name: "sans-serif",
+            provider: "none",
+          },
+        ],
+      },
+    }),
     presetAttributify(),
     presetIcons({
       extraProperties: { display: "inline-block", "vertical-align": "middle" },

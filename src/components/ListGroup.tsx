@@ -60,7 +60,7 @@ const ListGroup = ({
         values={list}
         onReorder={onChangeList}
         ref={scoped}
-        className="mb-4"
+        className="mb-4  flex flex-col gap-5"
       >
         {list.map((todo) => {
           return (
@@ -74,9 +74,13 @@ const ListGroup = ({
         })}
       </Reorder.Group>
 
-      <Button type="plus" onClick={() => setDialogShow(!dialogShow)}>
-        <span className="text-word/100 mr-2 font-600">add item</span>
-      </Button>
+      <section className="flex flex-row justify-start">
+        <Button
+          style={{ width: "130px" }}
+          handleType="plus"
+          onClick={() => setDialogShow(!dialogShow)}
+        />
+      </section>
 
       {dialogShow && (
         <Dialog
@@ -109,52 +113,47 @@ const CheckboxItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
         id={todo.id}
         style={{ y }}
         dragControls={controls}
-        className=" 
-        my-2
-        p-4
-        bg-tint-1
-        rounded-1
-        flex
-        flex-row 
-        items-center 
-        gap-5"
+        className="px-4 py-3 bg-tint-1 rounded-2
+        flex flex-row items-center gap-5 shadow-xl"
       >
-        <div
-          w-full
-          rounded-1
-          p-2
-          duration-300
-          flex="~ row items-center gap-4"
-          className="hover:bg-tint-2:30"
-        >
-          <input
-            onChange={(e) => checkedChange(todo, e.target.checked)}
-            checked={todo.checked || false}
-            className="checkboxChecked"
-            type="checkbox"
-            outline-none
-            cursor-pointer
-            relative
-            text-center
-            border-2
-            border-solid
-            appearance-none
-            border-tint-2
-            rounded-full
-            checked-border-0
-            checked-bg-check
-            checked-relative
-            checked-text-tint-1
-            w-6
-            h-6
-          />
+        <div w-full duration-300 flex="~ row items-center gap-2">
+          <div
+            flex="~ row items-center justify-center "
+            className="checkboxChecked rounded-full outline-2 outline-solid outline-check"
+          >
+            <input
+              onChange={(e) => checkedChange(todo, e.target.checked)}
+              checked={todo.checked || false}
+              className="checkInput 
+              checked-outline-3 checked-outline-checkedOutline/100 checked-bg-check
+              cursor-pointer bg-check/30"
+              type="checkbox"
+              id={`checkbox${todo.id}`}
+              outline-none
+              relative
+              text-center
+              appearance-none
+              rounded-full
+              checked-relative
+              checked-text-tint-1
+              w-6
+              h-6
+            />
 
-          <div flex="~ col " flex-1>
+            <label
+              htmlFor={`checkbox${todo.id}`}
+              className="checkedIcon flex flex-row  cursor-pointer justify-center items-center  absolute"
+            >
+              <div className="i-foundation:check text-6  text-tint-1" />
+            </label>
+          </div>
+
+          <div flex="~ col 1">
             <input
               type="text"
               value={todo.text}
               onChange={(e) => onChangeItem({ ...todo, text: e.target.value })}
-              className={`w-full transition-colors duration-300 appearance-none bg-transparent border-none outline-none text-16px ${
+              className={`w-full py-3 px-2 rounded-1 font-Switzer font-500  hover:bg-tint-2:30 transition-colors duration-300 appearance-none bg-transparent border-none outline-none text-16px ${
                 todo.checked ? " text-tint-2 line-through" : "text-tint-3"
               }`}
             />
@@ -162,7 +161,7 @@ const CheckboxItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
             {/* {caption && <span text-tint-2>{caption}</span>} */}
           </div>
         </div>
-        <Button type="delete" onClick={() => onDeleteItem(todo)} />
+        <Button handleType="delete" onClick={() => onDeleteItem(todo)} />
         <DragIcon dragControls={controls} />
       </Reorder.Item>
     </>
