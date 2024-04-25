@@ -36,7 +36,7 @@ const Button = ({ handleType, className, onClick, ...props }: Props) => {
       whileTap={{ scale: 0.97 }}
     >
       {handleType === "plus" ? (
-        <div className="flex flex-row gap-3 items-center text-word/60">
+        <div className="flex flex-row gap-3 items-center text-word/100">
           <div className="i-gravity-ui:plus text-5 font-600 " />
           <span>New Item</span>
         </div>

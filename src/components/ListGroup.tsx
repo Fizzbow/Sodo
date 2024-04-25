@@ -124,7 +124,9 @@ const CheckboxItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
             <input
               onChange={(e) => checkedChange(todo, e.target.checked)}
               checked={todo.checked || false}
-              className="checkInput cursor-pointer bg-check/30"
+              className="checkInput 
+              checked-outline-3 checked-outline-checkedOutline/100 checked-bg-check
+              cursor-pointer bg-check/30"
               type="checkbox"
               id={`checkbox${todo.id}`}
               outline-none
@@ -132,8 +134,6 @@ const CheckboxItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
               text-center
               appearance-none
               rounded-full
-              checked-border-0
-              checked-bg-check
               checked-relative
               checked-text-tint-1
               w-6

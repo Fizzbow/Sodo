@@ -8,38 +8,42 @@
 }
 .themed.green {
   /** background */
-  --backdrop: 0, 124, 96;
+  --backdrop: 70, 131, 77;
   /** title */
-  --word: 255, 255, 255;
+  --word: 250, 255, 192;
   --tint-1: 255, 255, 255;
   --tint-2: 188, 188, 188;
   --tint-3: 78, 78, 78;
-  --check: 0, 124, 96;
+  --checkedOutline: 171, 206, 175;
+  --check: 70, 131, 77;
 }
 
 .themed.purple {
-  --backdrop: 69, 100, 182;
+  --backdrop: 143, 109, 214;
   --word: 255, 255, 255;
   --tint-1: 255, 255, 255;
   --tint-2: 188, 188, 188;
   --tint-3: 78, 78, 78;
-  --check: 69, 100, 182;
+  --checkedOutline: 215, 210, 216;
+  --check: 143, 109, 214;
 }
 
 .themed.pinky {
-  --backdrop: 236, 225, 243;
-  --word: 107, 77, 129;
+  --backdrop: 248, 237, 217;
+  --word: 70, 131, 77;
   --tint-1: 255, 255, 255;
   --tint-2: 188, 188, 188;
   --tint-3: 78, 78, 78;
-  --check: 107, 77, 129;
+  --checkedOutline: 171, 206, 175;
+  --check: 70, 131, 77;
 }
 
 .themed.dark {
-  --backdrop: 40, 39, 42;
-  --word: 15, 132, 136;
-  --tint-1: 48, 47, 50;
+  --backdrop: 35, 50, 90;
+  --word: 230, 166, 113;
+  --tint-1: 255, 255, 255;
   --tint-2: 188, 188, 188;
-  --tint-3: 255, 255, 255;
-  --check: 15, 132, 136;
+  --tint-3: 78, 78, 78;
+  --checkedOutline: 239, 224, 212;
+  --check: 230, 166, 113;
 }

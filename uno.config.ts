@@ -23,6 +23,7 @@ export default defineConfig({
         3: "rgba(var(--tint-3) , %alpha)",
       },
       check: "rgba(var(--check), %alpha)",
+      checkedOutline: "rgba(var(--checkedOutline),%alpha)",
     },
     breakpoints: {
       xxs: "0px",
