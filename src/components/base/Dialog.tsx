@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import "../style/dialog.css";
+import "../../style/dialog.css";
 import Button from "./Button";
 import { motion } from "framer-motion";
 
@@ -33,7 +33,12 @@ const Dialog = ({ onCancel, onConfirm }: Props) => {
         className="dialog_content flex flex-col rounded-2"
       >
         <header flex="~ row justify-end">
-          <Button handleType="solid" onClick={() => onCancel(false)}>
+          <Button
+            handleType="solid"
+            variant="solid"
+            color="secondary"
+            onClick={() => onCancel(false)}
+          >
             <div
               after="content-empty absolute w-full h-2.5px top-50% left-50% translate--50% bg-white rotate--45"
               before="content-empty absolute w-full h-2.5px top-50% left-50% translate--50% bg-white rotate-45"
@@ -64,7 +69,7 @@ const Dialog = ({ onCancel, onConfirm }: Props) => {
           />
         </section>
 
-        <Button handleType="solid" onClick={handleAcceptAddItem}>
+        <Button variant="solid" color="secondary" onClick={handleAcceptAddItem}>
           <span className="text-white font-600 w-full">OK</span>
         </Button>
       </motion.div>

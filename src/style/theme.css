@@ -3,14 +3,14 @@
   height: 100%;
 }
 .themed {
-  background-color: rgba(var(--backdrop), 1);
-  color: rgba(var(--word), 1);
+  background-color: rgba(var(--primary), 1);
+  color: rgba(var(--secondary), 1);
 }
 .themed.green {
   /** background */
-  --backdrop: 70, 131, 77;
+  --primary: 70, 131, 77;
   /** title */
-  --word: 250, 255, 192;
+  --secondary: 250, 255, 192;
   --tint-1: 255, 255, 255;
   --tint-2: 188, 188, 188;
   --tint-3: 78, 78, 78;
@@ -19,8 +19,8 @@
 }
 
 .themed.purple {
-  --backdrop: 143, 109, 214;
-  --word: 255, 255, 255;
+  --primary: 143, 109, 214;
+  --secondary: 238, 232, 216;
   --tint-1: 255, 255, 255;
   --tint-2: 188, 188, 188;
   --tint-3: 78, 78, 78;
@@ -29,8 +29,8 @@
 }
 
 .themed.pinky {
-  --backdrop: 248, 237, 217;
-  --word: 70, 131, 77;
+  --primary: 248, 237, 217;
+  --secondary: 70, 131, 77;
   --tint-1: 255, 255, 255;
   --tint-2: 188, 188, 188;
   --tint-3: 78, 78, 78;
@@ -39,8 +39,8 @@
 }
 
 .themed.dark {
-  --backdrop: 35, 50, 90;
-  --word: 230, 166, 113;
+  --primary: 35, 50, 90;
+  --secondary: 230, 166, 113;
   --tint-1: 255, 255, 255;
   --tint-2: 188, 188, 188;
   --tint-3: 78, 78, 78;
