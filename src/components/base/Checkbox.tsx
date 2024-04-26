@@ -16,7 +16,7 @@ const Checkbox = ({ onChange, id, checked }: CheckboxProps) => {
         onChange={onChange}
         checked={checked || false}
         className="checkInput 
-        checked-outline-3 checked-outline-checkedOutline/100 checked-bg-check
+        checked-outline-3 checked-outline-checkedOutline/100 checked-bg-check checked-relative checked-text-tint-1/100
         cursor-pointer bg-check/30"
         type="checkbox"
         id={`checkbox${id}`}
@@ -25,8 +25,6 @@ const Checkbox = ({ onChange, id, checked }: CheckboxProps) => {
         text-center
         appearance-none
         rounded-full
-        checked-relative
-        checked-text-tint-1
         w-6
         h-6
       />
@@ -35,7 +33,7 @@ const Checkbox = ({ onChange, id, checked }: CheckboxProps) => {
         htmlFor={`checkbox${id}`}
         className="checkedIcon flex flex-row  cursor-pointer justify-center items-center  absolute"
       >
-        <div className="i-foundation:check text-6  text-tint-1" />
+        <div className="i-foundation:check text-6  text-tint-1/100" />
       </label>
     </motion.div>
   );

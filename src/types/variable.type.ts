@@ -2,9 +2,6 @@ export type ThemeColor = "green" | "purple" | "dark" | "pinky";
 export type ThemeVariable =
   | "primary"
   | "secondary"
-  | "tint-1"
-  | "tint-2"
-  | "tint-3"
   | "checkedOutline"
   | "check";
 
@@ -14,7 +11,7 @@ export interface Theme {
   path?: string;
 }
 
-export type CSSStatus = "error";
+export type CSSStatus = "error" | "tint-1" | "tint-2" | "tint-3";
 
 export interface themeVariable {
   primary: string;

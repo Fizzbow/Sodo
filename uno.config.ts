@@ -13,20 +13,27 @@ import {
 
 import { Theme } from "unocss/preset-mini";
 
+import {
+  GLOBAL_VAR_STATUS,
+  GLOBAL_VAR_THEME,
+} from "./src/constant/css.constant";
+
+const formatColors = () => {
+  const allColors = {};
+  const concatColors = Object.keys(GLOBAL_VAR_STATUS).concat(
+    Object.keys(GLOBAL_VAR_THEME.green)
+  );
+  // TODO: alpha must define (in static colors default is 100%)
+  for (const color of concatColors) {
+    allColors[color] = `rgba(var(--${color}) , %alpha)`;
+  }
+
+  return allColors;
+};
+
 export default defineConfig({
   theme: {
-    colors: {
-      primary: "rgba(var(--primary) , %alpha)",
-      secondary: "rgba(var(--secondary) , %alpha)",
-      tint: {
-        1: "rgba(var(--tint-1) , %alpha)",
-        2: "rgba(var(--tint-2) , %alpha)",
-        3: "rgba(var(--tint-3) , %alpha)",
-      },
-      check: "rgba(var(--check), %alpha)",
-      checkedOutline: "rgba(var(--checkedOutline),%alpha)",
-      error: "rgba(var(--error),%alpha)",
-    },
+    colors: formatColors(),
     breakpoints: {
       xxs: "0px",
       xs: "320px",
