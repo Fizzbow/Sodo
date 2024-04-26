@@ -6,7 +6,7 @@ export const GLOBAL_VAR_STATUS: Record<CSSStatus, string> = {
   error: "248,113,113",
 };
 
-export const globalVariableTheme: Record<
+export const GLOBAL_VAR_THEME: Record<
   ThemeColor,
   Record<ThemeVariable, string>
 > = {

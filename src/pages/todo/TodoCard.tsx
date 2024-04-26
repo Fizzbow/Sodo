@@ -45,7 +45,7 @@ const TodoCard = ({ todoList, changeTodo }: Props) => {
             >
               <input
                 type="text"
-                className="w-full font-Poppins outline-none font-700 text-secondary border-none text-7"
+                className="w-full font-Poppins outline-none font-700 text-secondary/100 border-none text-7"
                 name="headingInput"
                 bg-transparent
                 appearance-none
