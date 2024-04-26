@@ -12,6 +12,7 @@ import DragIcon from "./DragIcon";
 import { TodoList } from "../pages/todo/TodoCard";
 import Dialog from "./base/Dialog";
 import { v4 as uuidv4 } from "uuid";
+import Checkbox from "./base/Checkbox";
 export interface TodoItem {
   text: string;
   caption: string;
@@ -119,37 +120,13 @@ const CheckboxItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
         flex flex-row items-center gap-5 shadow-xl"
       >
         <div w-full duration-300 flex="~ row items-center gap-2">
-          <div
-            flex="~ row items-center justify-center "
-            className="checkboxChecked rounded-full outline-2 outline-solid outline-check"
-          >
-            <input
-              onChange={(e) => checkedChange(todo, e.target.checked)}
-              checked={todo.checked || false}
-              className="checkInput 
-              checked-outline-3 checked-outline-checkedOutline/100 checked-bg-check
-              cursor-pointer bg-check/30"
-              type="checkbox"
-              id={`checkbox${todo.id}`}
-              outline-none
-              relative
-              text-center
-              appearance-none
-              rounded-full
-              checked-relative
-              checked-text-tint-1
-              w-6
-              h-6
-            />
-
-            <label
-              htmlFor={`checkbox${todo.id}`}
-              className="checkedIcon flex flex-row  cursor-pointer justify-center items-center  absolute"
-            >
-              <div className="i-foundation:check text-6  text-tint-1" />
-            </label>
-          </div>
-
+          <Checkbox
+            id={todo.id}
+            checked={todo.checked}
+            onChange={(e) => {
+              checkedChange(todo, e.target.checked);
+            }}
+          />
           <div flex="~ col 1">
             <input
               type="text"
