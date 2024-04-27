@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import { createContext } from "react";
 import THEMES from "./constant/themes.constant";
 import ThemeToggle from "./components/ThemeToggle";
-import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 import { Theme } from "./types";
 
 const stateTheme = localStorage.getItem(
@@ -50,7 +50,7 @@ function App() {
         >
           <ThemeToggle themes={filteredThemes} setTheme={toggleTheme} />
           <Home />
-          <Contact />
+          <Footer />
         </div>
       </ThemeContext.Provider>
     </>

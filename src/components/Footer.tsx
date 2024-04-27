@@ -1,5 +1,5 @@
 import { GITHUB_LINK } from "../constant/todo.constant";
-const Contact = () => {
+const Footer = () => {
   return (
     <>
       <footer w-full mt-8 flex="~ row items-center justify-center">
@@ -26,4 +26,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default Footer;

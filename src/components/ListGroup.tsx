@@ -41,6 +41,8 @@ const ListGroup = ({
 
   /** checkbox animation */
   useEffect(() => {
+    console.log({ list });
+    if (!list || !list.length) return;
     if (list.every((item) => item.checked)) {
       const lastCompletedItem = list.findIndex((item) => !item.checked);
       animate(
@@ -56,24 +58,26 @@ const ListGroup = ({
 
   return (
     <>
-      <Reorder.Group
-        axis="y"
-        values={list}
-        onReorder={onChangeList}
-        ref={scoped}
-        className="mb-4  flex flex-col gap-7"
-      >
-        {list.map((todo) => {
-          return (
-            <CheckboxItem
-              todo={todo}
-              key={todo.id}
-              onChangeItem={onChangeItem}
-              onDeleteItem={onDeleteItem}
-            />
-          );
-        })}
-      </Reorder.Group>
+      {!!list.length && (
+        <Reorder.Group
+          axis="y"
+          values={list}
+          onReorder={onChangeList}
+          ref={scoped}
+          className="mb-4  flex flex-col gap-7"
+        >
+          {list.map((todo) => {
+            return (
+              <CheckboxItem
+                todo={todo}
+                key={todo.id}
+                onChangeItem={onChangeItem}
+                onDeleteItem={onDeleteItem}
+              />
+            );
+          })}
+        </Reorder.Group>
+      )}
 
       <section className="flex flex-row justify-start">
         <div
