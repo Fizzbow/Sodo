@@ -8,7 +8,7 @@ export interface TodoList {
 }
 
 interface Props {
-  todoList: TodoList[];
+  todoList: TodoList;
   changeTodo: (list: TodoList) => void;
 }
 
@@ -36,42 +36,38 @@ const TodoCard = ({ todoList, changeTodo }: Props) => {
 
   return (
     <>
-      {todoList.map((item) => {
-        return (
-          <div key={item.id} flex="~ col">
-            <header
-              flex="~ row items-center"
-              className="hover:bg-tint-2:50 cursor-pointer py-3 px-2 rounded-1 mb-4"
-            >
-              <input
-                type="text"
-                className="w-full font-Poppins outline-none font-700 text-secondary/100 border-none text-7"
-                name="headingInput"
-                bg-transparent
-                appearance-none
-                value={item.heading}
-                onChange={(e) =>
-                  changeTodo({ ...item, heading: e.target.value })
-                }
-              />
-            </header>
+      <div key={todoList.id} flex="~ col">
+        <header
+          flex="~ row items-center"
+          className="hover:bg-tint-2:50 cursor-pointer py-3 px-2 rounded-1 mb-4"
+        >
+          <input
+            type="text"
+            className="w-full font-Poppins outline-none font-700 text-secondary/100 border-none text-7"
+            name="headingInput"
+            bg-transparent
+            appearance-none
+            value={todoList.heading}
+            onChange={(e) =>
+              changeTodo({ ...todoList, heading: e.target.value })
+            }
+          />
+        </header>
 
-            <ListGroup
-              onChangeList={(list) => {
-                changeTodo({ ...item, list });
-              }}
-              onAddItem={(i) => {
-                const { list } = item;
-                list.push(i);
-                changeTodo({ ...item, list });
-              }}
-              onChangeItem={(todoItem) => changeItem(todoItem, item)}
-              onDeleteItem={(todoItem) => deleteItem(todoItem, item)}
-              list={item.list}
-            />
-          </div>
-        );
-      })}
+        <ListGroup
+          onChangeList={(list) => {
+            changeTodo({ ...todoList, list });
+          }}
+          onAddItem={(i) => {
+            const { list } = todoList;
+            list.push(i);
+            changeTodo({ ...todoList, list });
+          }}
+          onChangeItem={(todoItem) => changeItem(todoItem, todoList)}
+          onDeleteItem={(todoItem) => deleteItem(todoItem, todoList)}
+          list={todoList.list}
+        />
+      </div>
     </>
   );
 };

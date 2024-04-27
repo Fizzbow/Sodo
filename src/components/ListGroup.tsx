@@ -41,6 +41,8 @@ const ListGroup = ({
 
   /** checkbox animation */
   useEffect(() => {
+    console.log({ list });
+    if (!list || !list.length) return;
     if (list.every((item) => item.checked)) {
       const lastCompletedItem = list.findIndex((item) => !item.checked);
       animate(
@@ -56,24 +58,26 @@ const ListGroup = ({
 
   return (
     <>
-      <Reorder.Group
-        axis="y"
-        values={list}
-        onReorder={onChangeList}
-        ref={scoped}
-        className="mb-4  flex flex-col gap-7"
-      >
-        {list.map((todo) => {
-          return (
-            <CheckboxItem
-              todo={todo}
-              key={todo.id}
-              onChangeItem={onChangeItem}
-              onDeleteItem={onDeleteItem}
-            />
-          );
-        })}
-      </Reorder.Group>
+      {!!list.length && (
+        <Reorder.Group
+          axis="y"
+          values={list}
+          onReorder={onChangeList}
+          ref={scoped}
+          className="mb-4  flex flex-col gap-7"
+        >
+          {list.map((todo) => {
+            return (
+              <CheckboxItem
+                todo={todo}
+                key={todo.id}
+                onChangeItem={onChangeItem}
+                onDeleteItem={onDeleteItem}
+              />
+            );
+          })}
+        </Reorder.Group>
+      )}
 
       <section className="flex flex-row justify-start">
         <div
@@ -117,7 +121,9 @@ const CheckboxItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
         style={{ y }}
         dragControls={controls}
         className="px-4 py-2 bg-tint-1 rounded-2
-        flex flex-row items-center gap-5 shadow-[4px_4px_7.1px_0px_rgba(0,0,0,0.30)]"
+        flex flex-row items-center gap-5 shadow-[4px_4px_7.1px_0px_rgba(0,0,0,0.30)]
+        hover:outline-checkedOutline hover:outline-solid hover:outline-2
+        "
       >
         <div w-full duration-300 flex="~ row items-center gap-2">
           <Checkbox
