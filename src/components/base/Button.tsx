@@ -1,4 +1,4 @@
-import { MotionProps, checkTargetForNewValues, motion } from "framer-motion";
+import { MotionProps, motion } from "framer-motion";
 import { ReactNode } from "react";
 import { CSSStatus, ThemeVariable } from "../../types";
 

@@ -117,7 +117,9 @@ const CheckboxItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
         style={{ y }}
         dragControls={controls}
         className="px-4 py-2 bg-tint-1 rounded-2
-        flex flex-row items-center gap-5 shadow-[4px_4px_7.1px_0px_rgba(0,0,0,0.30)]"
+        flex flex-row items-center gap-5 shadow-[4px_4px_7.1px_0px_rgba(0,0,0,0.30)]
+        hover:outline-checkedOutline hover:outline-solid hover:outline-2
+        "
       >
         <div w-full duration-300 flex="~ row items-center gap-2">
           <Checkbox
