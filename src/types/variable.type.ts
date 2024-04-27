@@ -12,7 +12,3 @@ export interface Theme {
 }
 
 export type CSSStatus = "error" | "tint-1" | "tint-2" | "tint-3";
-
-export interface themeVariable {
-  primary: string;
-}
