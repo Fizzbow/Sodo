@@ -36,7 +36,7 @@ const Dialog = ({ onCancel, onConfirm }: Props) => {
           <Button
             handleType="solid"
             variant="solid"
-            color="secondary"
+            color="check"
             onClick={() => onCancel(false)}
           >
             <div
@@ -63,14 +63,14 @@ const Dialog = ({ onCancel, onConfirm }: Props) => {
             bg-transparent
             focus="border-b-check transition duration-300"
             value={inputVal}
-            placeholder="Deploy to Vercel..."
+            placeholder="type anything you want..."
             onChange={(e) => setInputVal(e.target.value)}
             ref={inputRef}
           />
         </section>
 
-        <Button variant="solid" color="secondary" onClick={handleAcceptAddItem}>
-          <span className="text-white font-600 w-full">OK</span>
+        <Button variant="solid" color="check" onClick={handleAcceptAddItem}>
+          <span className="text-white font-600 w-full">ADD</span>
         </Button>
       </motion.div>
     </div>

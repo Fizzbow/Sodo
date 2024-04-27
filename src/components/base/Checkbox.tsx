@@ -8,34 +8,27 @@ interface CheckboxProps {
 
 const Checkbox = ({ onChange, id, checked }: CheckboxProps) => {
   return (
-    <motion.div
+    <motion.label
       whileTap={{ scale: 0.9 }}
-      className="checkboxChecked rounded-full outline-2 outline-solid outline-check flex flex-row items-center justify-center"
+      className={`checkboxChecked rounded-full overflow-hidden border-3 border-solid cursor-pointer  flex flex-row items-center w-8 h-8 justify-center  ${
+        checked
+          ? " border-checkedOutline/100 bg-check"
+          : " border-check bg-check/30"
+      }`}
     >
       <input
         onChange={onChange}
         checked={checked || false}
-        className="checkInput 
-        checked-outline-3 checked-outline-checkedOutline/100 checked-bg-check checked-relative checked-text-tint-1/100
-        cursor-pointer bg-check/30"
+        className="checkInput "
         type="checkbox"
         id={`checkbox${id}`}
-        outline-none
-        relative
         text-center
         appearance-none
         rounded-full
-        w-6
-        h-6
       />
 
-      <label
-        htmlFor={`checkbox${id}`}
-        className="checkedIcon flex flex-row  cursor-pointer justify-center items-center  absolute"
-      >
-        <div className="i-foundation:check text-6  text-tint-1/100" />
-      </label>
-    </motion.div>
+      <div className="checkedIcon i-foundation:check text-5  absolute text-tint-1/100" />
+    </motion.label>
   );
 };
 

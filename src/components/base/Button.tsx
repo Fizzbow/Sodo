@@ -1,13 +1,15 @@
-import { MotionProps, motion } from "framer-motion";
+import { MotionProps, checkTargetForNewValues, motion } from "framer-motion";
 import { ReactNode } from "react";
+import { CSSStatus, ThemeVariable } from "../../types";
 
+type Color = Partial<CSSStatus | ThemeVariable>;
 interface Props extends MotionProps {
   handleType?: "delete" | "plus" | "solid";
   className?: string;
   startIcon?: ReactNode;
   endIcon?: ReactNode;
   variant?: "translucent" | "solid";
-  color?: string;
+  color?: Color;
   onClick: () => void;
 }
 
@@ -20,17 +22,19 @@ const Button = ({
   endIcon,
   ...props
 }: Props) => {
-  const transVariants: Record<string, string> = {
+  const transVariants = {
     primary: "bg-primary/30 text-primary/100 hover:bg-red/40",
     error: "bg-error/30 text-error/100 hover:bg-error/40",
     secondary: "bg-secondary/30 text-secondary/100 hover:bg-secondary/40",
-  };
+    check: "bg-check/30 text-check/100 hover:bg-check/40",
+  } as Record<Color, string>;
 
-  const solidVariants: Record<string, string> = {
+  const solidVariants = {
     primary: "bg-primary/100 text-secondary/100 hover:bg-red/80",
     secondary: "bg-secondary/100 text-primary/100 hover:bg-secondary/80",
     error: "bg-error/100 text-white/100 hover:bg-error/80",
-  };
+    check: "bg-check/100 text-primary/100 hover:bg-check/80",
+  } as Record<Color, string>;
   return (
     <motion.button
       onClick={onClick}
@@ -46,8 +50,8 @@ const Button = ({
       text-center
       cursor-pointer
       rounded-1
-      ${variant === "translucent" && transVariants[color as string]}
-      ${variant === "solid" && solidVariants[color as string]}
+      ${variant === "translucent" && transVariants[color as Color]}
+      ${variant === "solid" && solidVariants[color as Color]}
       ${className}
       `}
       whileTap={{ scale: 0.97 }}

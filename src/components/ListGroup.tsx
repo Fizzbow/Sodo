@@ -61,7 +61,7 @@ const ListGroup = ({
         values={list}
         onReorder={onChangeList}
         ref={scoped}
-        className="mb-4  flex flex-col gap-5"
+        className="mb-4  flex flex-col gap-7"
       >
         {list.map((todo) => {
           return (
@@ -116,8 +116,8 @@ const CheckboxItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
         id={todo.id}
         style={{ y }}
         dragControls={controls}
-        className="px-4 py-3 bg-tint-1 rounded-2
-        flex flex-row items-center gap-5 shadow-xl"
+        className="px-4 py-2 bg-tint-1 rounded-2
+        flex flex-row items-center gap-5 shadow-[4px_4px_7.1px_0px_rgba(0,0,0,0.30)]"
       >
         <div w-full duration-300 flex="~ row items-center gap-2">
           <Checkbox
@@ -127,10 +127,11 @@ const CheckboxItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
               checkedChange(todo, e.target.checked);
             }}
           />
-          <div flex="~ col 1">
+          <div className="flex flex-row w-auto">
             <input
               type="text"
               value={todo.text}
+              size={todo.text.length}
               onChange={(e) => onChangeItem({ ...todo, text: e.target.value })}
               className={`w-full py-3 px-2 rounded-1 font-Switzer font-500  hover:bg-tint-2:30 transition-colors duration-300 appearance-none bg-transparent border-none outline-none text-16px ${
                 todo.checked
@@ -145,8 +146,9 @@ const CheckboxItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
         <Button
           handleType="delete"
           color="error"
+          className="rounded-2 p-[5px!important]"
           onClick={() => onDeleteItem(todo)}
-          startIcon={<div className="i-ri:delete-bin-5-line text-6 " />}
+          startIcon={<div className="i-ri:delete-bin-5-line text-5" />}
         />
         <DragIcon dragControls={controls} />
       </Reorder.Item>
