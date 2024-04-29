@@ -1,19 +1,14 @@
 import ListGroup from "../../components/ListGroup";
 import { TodoItem } from "../../components/ListGroup";
-
-export interface TodoList {
-  heading: string;
-  id: string;
-  list: Array<TodoItem>;
-}
+import { Card } from "../../types";
 
 interface Props {
-  todoList: TodoList;
-  changeTodo: (list: TodoList) => void;
+  todoList: Card;
+  changeTodo: (list: Card) => void;
 }
 
 const TodoCard = ({ todoList, changeTodo }: Props) => {
-  function changeItem(todoItem: TodoItem, cardTodo: TodoList) {
+  function changeItem(todoItem: TodoItem, cardTodo: Card) {
     const newList = cardTodo.list.map((i) => {
       if (i.id === todoItem.id) {
         return todoItem;
@@ -26,7 +21,7 @@ const TodoCard = ({ todoList, changeTodo }: Props) => {
     });
   }
 
-  function deleteItem(todoItem: TodoItem, cardTodo: TodoList) {
+  function deleteItem(todoItem: TodoItem, cardTodo: Card) {
     const newList = cardTodo.list.filter((i) => i.id !== todoItem.id);
     changeTodo({
       ...cardTodo,
@@ -36,7 +31,7 @@ const TodoCard = ({ todoList, changeTodo }: Props) => {
 
   return (
     <>
-      <div key={todoList.id} flex="~ col">
+      <div key={todoList.card_id} flex="~ col">
         <header
           flex="~ row items-center"
           className="hover:bg-tint-2:50 cursor-pointer py-3 px-2 rounded-1 mb-4"
@@ -47,10 +42,8 @@ const TodoCard = ({ todoList, changeTodo }: Props) => {
             name="headingInput"
             bg-transparent
             appearance-none
-            value={todoList.heading}
-            onChange={(e) =>
-              changeTodo({ ...todoList, heading: e.target.value })
-            }
+            value={todoList.title}
+            onChange={(e) => changeTodo({ ...todoList, title: e.target.value })}
           />
         </header>
 
