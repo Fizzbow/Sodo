@@ -1,4 +1,9 @@
-export type ThemeColor = "green" | "purple" | "dark" | "pinky";
+export enum THEMECOLOR {
+  GREEN = "green",
+  PURPLE = "purple",
+  DARK = "dark",
+  PINKY = "pinky",
+}
 export type ThemeVariable =
   | "primary"
   | "secondary"
@@ -6,7 +11,7 @@ export type ThemeVariable =
   | "check";
 
 export interface Theme {
-  themeId: ThemeColor;
+  themeId: THEMECOLOR;
   color: string;
   path?: string;
 }
