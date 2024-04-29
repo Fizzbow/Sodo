@@ -9,10 +9,11 @@ import { stagger } from "framer-motion/dom";
 import { useEffect, useState } from "react";
 import Button from "./base/Button";
 import DragIcon from "./DragIcon";
-import { TodoList } from "../pages/todo/TodoCard";
+
 import Dialog from "./base/Dialog";
 import { v4 as uuidv4 } from "uuid";
 import Checkbox from "./base/Checkbox";
+import { Card } from "../types";
 export interface TodoItem {
   text: string;
   caption: string;
@@ -25,7 +26,7 @@ interface ListProps {
   onChangeItem: (item: TodoItem) => void;
   onDeleteItem: (item: TodoItem) => void;
   onAddItem: (item: TodoItem) => void;
-  onChangeList: (list: TodoList["list"]) => void;
+  onChangeList: (list: Card["list"]) => void;
 }
 
 const ListGroup = ({
@@ -41,7 +42,6 @@ const ListGroup = ({
 
   /** checkbox animation */
   useEffect(() => {
-    console.log({ list });
     if (!list || !list.length) return;
     if (list.every((item) => item.checked)) {
       const lastCompletedItem = list.findIndex((item) => !item.checked);
@@ -58,7 +58,7 @@ const ListGroup = ({
 
   return (
     <>
-      {!!list.length && (
+      {!!list && (
         <Reorder.Group
           axis="y"
           values={list}

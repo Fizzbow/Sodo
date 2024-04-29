@@ -59,7 +59,9 @@ const ThemeToggle = ({ themes, setTheme }: Props) => {
           >
             {themes.map((theme) => (
               <motion.path
-                onClick={() => setTheme(theme.themeId)}
+                onClick={() => {
+                  setTheme(theme.themeId), setShowToggle(false);
+                }}
                 className="cursor-pointer"
                 d={theme.path}
                 fill={theme.color}

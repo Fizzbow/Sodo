@@ -1,58 +1,58 @@
-import { useState } from "react";
-import Home from "./pages/Home";
+import { useEffect, useState } from "react";
 
-import { createContext } from "react";
 import THEMES from "./constant/themes.constant";
 import ThemeToggle from "./components/ThemeToggle";
 import Footer from "./components/Footer";
-import { Theme } from "./types";
+import { Card, Theme, THEMECOLOR } from "./types";
+import { TODO_LIST } from "./constant/todo.constant";
+import TodoCard from "./pages/todo/TodoCard";
 
-const stateTheme = localStorage.getItem(
-  "react_todo_theme_Id"
-) as Theme["themeId"];
+const storageTodoList = localStorage.getItem(TODO_LIST);
 
-function initFilterThemes(): Theme[] {
-  if (stateTheme) {
-    const filter = THEMES.filter((i) => i.themeId !== stateTheme);
-    return filter;
-  } else {
-    return THEMES;
+function initTodoList(): Card {
+  if (!storageTodoList) {
+    return {
+      title: "Title",
+      card_id: "",
+      list: [],
+      theme: THEMECOLOR.GREEN,
+    };
   }
-}
 
-function initCurrentTheme(): Theme["themeId"] {
-  if (stateTheme) return stateTheme;
-  return "green";
+  return JSON.parse(storageTodoList);
 }
 
 function App() {
-  const ThemeContext = createContext({
-    theme: "",
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    setTheme: (_themeId: Theme["themeId"]) => {},
-  });
+  const [todo, setTodoList] = useState<Card>(initTodoList);
 
-  const [theme, setTheme] = useState(initCurrentTheme);
-  const [filteredThemes, filterThemes] = useState(initFilterThemes);
+  useEffect(() => {
+    localStorage.setItem(TODO_LIST, JSON.stringify(todo));
+  }, [todo]);
+
   function toggleTheme(themeId: Theme["themeId"]) {
-    localStorage.setItem("react_todo_theme_Id", themeId);
-    setTheme(themeId);
-    filterThemes(THEMES.filter((i) => i.themeId !== themeId));
+    const newTheme = THEMES.find((i) => i.themeId === themeId)
+      ?.themeId as THEMECOLOR;
+
+    if (!newTheme) return;
+    setTodoList({ ...todo, theme: newTheme });
   }
 
   return (
     <>
-      <ThemeContext.Provider value={{ theme, setTheme }}>
-        <div
-          overflow-hidden
-          flex="~ col"
-          className={`themed font-Switzer  font-500  p-6 w-full h-full transition-background-color-2 transition-color-2 ${theme} bg-primary`}
-        >
-          <ThemeToggle themes={filteredThemes} setTheme={toggleTheme} />
-          <Home />
-          <Footer />
+      <div
+        overflow-hidden
+        flex="~ col"
+        className={`themed ${todo.theme} font-Switzer  font-500  p-6 w-full h-full transition-background-color-2 transition-color-2 bg-primary`}
+      >
+        <ThemeToggle themes={THEMES} setTheme={toggleTheme} />
+        <div flex="~ row 1" className="px-6 ">
+          <TodoCard
+            todoList={todo}
+            changeTodo={(val) => setTodoList({ ...val })}
+          />
         </div>
-      </ThemeContext.Provider>
+        <Footer />
+      </div>
     </>
   );
 }
