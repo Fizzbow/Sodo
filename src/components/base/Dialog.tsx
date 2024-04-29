@@ -1,30 +1,20 @@
-import { useEffect, useRef, useState } from "react";
+import { ReactNode } from "react";
 import "../../style/dialog.css";
 import Button from "./Button";
 import { motion } from "framer-motion";
 
-interface Props {
-  onCancel: (show: boolean) => void;
-  onConfirm: (val: string) => void;
+interface DialogProps {
+  children: ReactNode;
+  open: boolean;
+  onClose: (show: boolean) => void;
 }
 
-const Dialog = ({ onCancel, onConfirm }: Props) => {
-  const [inputVal, setInputVal] = useState("");
-  const inputRef = useRef<HTMLInputElement | null>(null);
-
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
-
-  function handleAcceptAddItem() {
-    if (!inputVal) return onCancel(false);
-
-    onConfirm(inputVal);
-    onCancel(false);
-  }
-
+const Dialog = ({ onClose, open, children }: DialogProps) => {
   return (
-    <div className="dialog" onClick={() => onCancel(false)}>
+    <div
+      className={`dialog ${open ? "flex" : "hidden"}`}
+      onClick={() => onClose(false)}
+    >
       <motion.div
         onClick={(e) => e.stopPropagation()}
         initial={{ opacity: 0 }}
@@ -37,7 +27,7 @@ const Dialog = ({ onCancel, onConfirm }: Props) => {
             handleType="solid"
             variant="solid"
             color="check"
-            onClick={() => onCancel(false)}
+            onClick={() => onClose(false)}
           >
             <div
               after="content-empty absolute w-full h-2.5px top-50% left-50% translate--50% bg-white rotate--45"
@@ -49,29 +39,7 @@ const Dialog = ({ onCancel, onConfirm }: Props) => {
             />
           </Button>
         </header>
-        <section my-4>
-          <input
-            min-w-xs
-            py-2
-            text-16px
-            type="text"
-            border-none
-            border-b-tint-2
-            border-b-solid
-            border-b-2
-            outline-none
-            bg-transparent
-            focus="border-b-check transition duration-300"
-            value={inputVal}
-            placeholder="type anything you want..."
-            onChange={(e) => setInputVal(e.target.value)}
-            ref={inputRef}
-          />
-        </section>
-
-        <Button variant="solid" color="check" onClick={handleAcceptAddItem}>
-          <span className="text-white font-600 w-full">ADD</span>
-        </Button>
+        {children}
       </motion.div>
     </div>
   );

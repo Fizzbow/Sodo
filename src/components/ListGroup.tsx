@@ -6,7 +6,7 @@ import {
 } from "framer-motion";
 import "../style/checkbox.css";
 import { stagger } from "framer-motion/dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "./base/Button";
 import DragIcon from "./DragIcon";
 
@@ -39,6 +39,18 @@ const ListGroup = ({
   const [scoped, animate] = useAnimate();
   /** dialog state */
   const [dialogShow, setDialogShow] = useState(false);
+  const [inputVal, setInputVal] = useState("");
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  function handleAcceptAddItem() {
+    if (!inputVal) return;
+    onAddItem({ checked: false, text: inputVal, caption: "", id: uuidv4() });
+    setDialogShow(false);
+  }
 
   /** checkbox animation */
   useEffect(() => {
@@ -89,14 +101,31 @@ const ListGroup = ({
         </div>
       </section>
 
-      {dialogShow && (
-        <Dialog
-          onCancel={(val) => setDialogShow(val)}
-          onConfirm={(val) =>
-            onAddItem({ checked: false, text: val, caption: "", id: uuidv4() })
-          }
-        />
-      )}
+      <Dialog open={dialogShow} onClose={setDialogShow}>
+        <section my-4>
+          <input
+            min-w-xs
+            py-2
+            text-16px
+            type="text"
+            border-none
+            border-b-tint-2
+            border-b-solid
+            border-b-2
+            outline-none
+            bg-transparent
+            focus="border-b-check transition duration-300"
+            value={inputVal}
+            placeholder="type anything you want to do..."
+            onChange={(e) => setInputVal(e.target.value)}
+            ref={inputRef}
+          />
+        </section>
+
+        <Button variant="solid" color="check" onClick={handleAcceptAddItem}>
+          <span className="text-white font-600 w-full">ADD</span>
+        </Button>
+      </Dialog>
     </>
   );
 };
@@ -133,20 +162,18 @@ const CheckboxItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
               checkedChange(todo, e.target.checked);
             }}
           />
-          <div className="flex flex-row w-auto">
+          <div className="flex flex-col w-auto px-2">
             <input
               type="text"
               value={todo.text}
               size={todo.text.length}
               onChange={(e) => onChangeItem({ ...todo, text: e.target.value })}
-              className={`w-full py-3 px-2 rounded-1 font-Switzer font-500  hover:bg-tint-2:30 transition-colors duration-300 appearance-none bg-transparent border-none outline-none text-16px ${
+              className={`w-full py-1  rounded-1 font-Switzer font-500  hover:bg-tint-2:30 transition-colors duration-300 appearance-none bg-transparent border-none outline-none text-18px ${
                 todo.checked
                   ? " text-tint-2/100 line-through"
                   : "text-tint-3/100"
               }`}
             />
-
-            {/* {caption && <span text-tint-2>{caption}</span>} */}
           </div>
         </div>
         <Button
