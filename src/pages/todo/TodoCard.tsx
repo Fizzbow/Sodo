@@ -31,7 +31,7 @@ const TodoCard = ({ todoList, changeTodo }: Props) => {
 
   return (
     <>
-      <div key={todoList.card_id} flex="~ col">
+      <div key={todoList.card_id} flex="~ col 1">
         <header
           flex="~ row items-center"
           className="hover:bg-tint-2:50 cursor-pointer py-3 px-2 rounded-1 mb-4"
