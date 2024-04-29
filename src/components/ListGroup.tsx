@@ -168,7 +168,7 @@ const CheckboxItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
               value={todo.text}
               size={todo.text.length}
               onChange={(e) => onChangeItem({ ...todo, text: e.target.value })}
-              className={`w-full py-1  rounded-1 font-Switzer font-500  hover:bg-tint-2:30 transition-colors duration-300 appearance-none bg-transparent border-none outline-none text-18px ${
+              className={`w-full py-3   rounded-1 font-Switzer font-500  hover:bg-tint-2:30 transition-colors duration-300 appearance-none bg-transparent border-none outline-none text-18px ${
                 todo.checked
                   ? " text-tint-2/100 line-through"
                   : "text-tint-3/100"
