@@ -6,6 +6,7 @@ import Checkbox from "./base/Checkbox";
 import { Item } from "../types";
 import DropDown, { Menu } from "./base/DropDown";
 import { useState } from "react";
+import formatDate from "../utils/formatDate";
 
 interface ItemProps {
   todo: Item;
@@ -51,7 +52,13 @@ const ReorderItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
               type="text"
               value={todo.text}
               disabled={todo.checked}
-              onChange={(e) => onChangeItem({ ...todo, text: e.target.value })}
+              onChange={(e) =>
+                onChangeItem({
+                  ...todo,
+                  text: e.target.value,
+                  update_time: formatDate(new Date()),
+                })
+              }
               className={`flex-1 py-1 px-2  rounded-1 font-Switzer font-500   transition-all-color appearance-none bg-transparent border-none outline-none text-16px ${
                 todo.checked
                   ? "text-tint-2/100 line-through cursor-not-allowed"
@@ -69,10 +76,11 @@ const ReorderItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
           <DragIcon dragControls={controls} />
         </div>
 
-        <div className="mt-1 ml-10 flex flex-row">
+        <div className="mt-1 ml-10 flex flex-row items-center text-3 gap-1">
           <DropDown
             open={open}
             menus={menus}
+            defaultMenuId={menus[0].id}
             setOutSideOpen={(val) => setOpen(val)}
             setMenu={(id) => {
               const curren = menus.find((i) => i.id === id);
@@ -89,6 +97,9 @@ const ReorderItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
               </Button>
             }
           />
+          <span className="font-400 text-tint-3/70">
+            {menu?.id === "created" ? todo.create_time : todo.update_time}
+          </span>
         </div>
       </Reorder.Item>
     </>

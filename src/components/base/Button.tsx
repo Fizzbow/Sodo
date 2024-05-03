@@ -26,7 +26,7 @@ const Button = ({
     primary: "bg-primary/30 text-primary/100 hover:bg-primary/40",
     error: "bg-error/30 text-error/100 hover:bg-error/40",
     secondary: "bg-secondary/30 text-secondary/100 hover:bg-secondary/40",
-    check: "bg-check/30 text-check/100 hover:bg-check/40",
+    check: "bg-check/20 text-check/100 hover:bg-check/40",
   } as Record<Color, string>;
 
   const solidVariants = {

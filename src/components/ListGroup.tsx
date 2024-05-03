@@ -8,6 +8,7 @@ import Dialog from "./base/Dialog";
 import { v4 as uuidv4 } from "uuid";
 import { Card, Item } from "../types";
 import ReorderItem from "./ReorderItem";
+import formatDate from "../utils/formatDate";
 
 interface ListProps {
   list: Array<Item>;
@@ -33,10 +34,18 @@ const ListGroup = ({
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
- 
+
   function handleAcceptAddItem() {
     if (!inputVal) return;
-    onAddItem({ checked: false, text: inputVal, caption: "", id: uuidv4() });
+    const create_time = formatDate(new Date());
+
+    onAddItem({
+      checked: false,
+      text: inputVal,
+      caption: "",
+      id: uuidv4(),
+      create_time,
+    });
     setDialogShow(false);
     setInputVal("");
   }

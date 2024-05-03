@@ -12,6 +12,7 @@ interface DropdownProps {
   menus: Array<Menu>;
   setMenu: (id: string) => void;
   setOutSideOpen: (open: boolean) => void;
+  defaultMenuId?: string;
 }
 
 const container = {
@@ -39,15 +40,26 @@ const DropDown = ({
   trigger,
   setMenu,
   menus,
+  defaultMenuId,
 }: DropdownProps) => {
-  const [currMenuId, setCurrMenuId] = useState("");
+  const [currMenuId, setCurrMenuId] = useState(() => {
+    if (defaultMenuId) return defaultMenuId;
+  });
   const menuRef = useRef<HTMLUListElement | null>(null);
+  const triggerRef = useRef<HTMLDivElement | null>(null);
 
   const handleChickOutside = (event: MouseEvent) => {
+    if (triggerRef.current?.contains(event.target as Node)) return;
     if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
       setOutSideOpen(false);
     }
   };
+
+  useEffect(() => {
+    if (defaultMenuId) {
+      setMenu(defaultMenuId);
+    }
+  }, [defaultMenuId]);
 
   useEffect(() => {
     document.addEventListener("mousedown", handleChickOutside);
@@ -62,7 +74,9 @@ const DropDown = ({
       animate={open ? "visible" : "hidden"}
       className={"flex flex-col gap-2 relative"}
     >
-      <motion.div className="appearance-none ">{trigger}</motion.div>
+      <motion.div ref={triggerRef} className="appearance-none">
+        {trigger}
+      </motion.div>
       <motion.ul
         ref={menuRef}
         className="container flex flex-col p1 gap-2 bg-tint-1/85 border-2 border-solid border-check/50 rounded-2 min-w-24   backdrop-blur-3.75 absolute top-[130%] "
