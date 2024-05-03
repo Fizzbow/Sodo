@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 
 export interface Menu {
   id: string;
@@ -11,6 +11,7 @@ interface DropdownProps {
   trigger: ReactNode;
   menus: Array<Menu>;
   setMenu: (id: string) => void;
+  setOutSideOpen: (open: boolean) => void;
 }
 
 const container = {
@@ -32,8 +33,28 @@ const item = {
     opacity: 1,
   },
 };
-const DropDown = ({ open, trigger, setMenu, menus }: DropdownProps) => {
+const DropDown = ({
+  open,
+  setOutSideOpen,
+  trigger,
+  setMenu,
+  menus,
+}: DropdownProps) => {
   const [currMenuId, setCurrMenuId] = useState("");
+  const menuRef = useRef<HTMLUListElement | null>(null);
+
+  const handleChickOutside = (event: MouseEvent) => {
+    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      setOutSideOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleChickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleChickOutside);
+    };
+  }, []);
 
   return (
     <motion.div
@@ -43,12 +64,13 @@ const DropDown = ({ open, trigger, setMenu, menus }: DropdownProps) => {
     >
       <motion.div className="appearance-none ">{trigger}</motion.div>
       <motion.ul
-        className="container flex flex-col  p1 gap-2 bg-tint-1/85 border-2 border-solid border-check/50 rounded-2 min-w-24   backdrop-blur-3.75 absolute top-[130%] "
+        ref={menuRef}
+        className="container flex flex-col p1 gap-2 bg-tint-1/85 border-2 border-solid border-check/50 rounded-2 min-w-24   backdrop-blur-3.75 absolute top-[130%] "
         variants={container}
       >
         {menus.map((menu) => (
           <motion.li
-            className={` ${
+            className={`${
               menu.id === currMenuId
                 ? "text-check/100  bg-checkedOutline/40 outline-2 outline-solid outline-checkedOutline/100"
                 : "text-tint-3/100"

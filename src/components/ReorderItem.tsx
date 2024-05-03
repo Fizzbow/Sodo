@@ -73,14 +73,15 @@ const ReorderItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
           <DropDown
             open={open}
             menus={menus}
+            setOutSideOpen={(val) => setOpen(val)}
             setMenu={(id) => {
               const curren = menus.find((i) => i.id === id);
               if (curren) setMenu({ ...curren });
             }}
             trigger={
               <Button
-                className="py-1 text-3"
                 onClick={() => setOpen(!open)}
+                className="py-1 text-3"
                 variant="translucent"
                 color="check"
               >
