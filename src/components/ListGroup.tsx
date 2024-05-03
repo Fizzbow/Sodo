@@ -1,31 +1,19 @@
-import {
-  Reorder,
-  useAnimate,
-  useDragControls,
-  useMotionValue,
-} from "framer-motion";
+import { Reorder, useAnimate } from "framer-motion";
 import "../style/checkbox.css";
 import { stagger } from "framer-motion/dom";
 import { useEffect, useRef, useState } from "react";
 import Button from "./base/Button";
-import DragIcon from "./DragIcon";
 
 import Dialog from "./base/Dialog";
 import { v4 as uuidv4 } from "uuid";
-import Checkbox from "./base/Checkbox";
-import { Card } from "../types";
-export interface TodoItem {
-  text: string;
-  caption: string;
-  checked?: boolean;
-  id: string;
-}
+import { Card, Item } from "../types";
+import ReorderItem from "./ReorderItem";
 
 interface ListProps {
-  list: Array<TodoItem>;
-  onChangeItem: (item: TodoItem) => void;
-  onDeleteItem: (item: TodoItem) => void;
-  onAddItem: (item: TodoItem) => void;
+  list: Array<Item>;
+  onChangeItem: (item: Item) => void;
+  onDeleteItem: (item: Item) => void;
+  onAddItem: (item: Item) => void;
   onChangeList: (list: Card["list"]) => void;
 }
 
@@ -45,11 +33,12 @@ const ListGroup = ({
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
-
+ 
   function handleAcceptAddItem() {
     if (!inputVal) return;
     onAddItem({ checked: false, text: inputVal, caption: "", id: uuidv4() });
     setDialogShow(false);
+    setInputVal("");
   }
 
   /** checkbox animation */
@@ -80,7 +69,7 @@ const ListGroup = ({
         >
           {list.map((todo) => {
             return (
-              <CheckboxItem
+              <ReorderItem
                 todo={todo}
                 key={todo.id}
                 onChangeItem={onChangeItem}
@@ -114,11 +103,15 @@ const ListGroup = ({
             border-b-2
             outline-none
             bg-transparent
-            focus="border-b-check transition duration-300"
+            focus="border-b-check transition-all-color"
             value={inputVal}
             placeholder="type anything you want to do..."
             onChange={(e) => setInputVal(e.target.value)}
             ref={inputRef}
+            onKeyDown={(e) => {
+              if (e.key !== "Enter") return;
+              handleAcceptAddItem();
+            }}
           />
         </section>
 
@@ -126,65 +119,6 @@ const ListGroup = ({
           <span className="text-white font-600 w-full">ADD</span>
         </Button>
       </Dialog>
-    </>
-  );
-};
-
-interface ItemProps {
-  todo: TodoItem;
-  onDeleteItem: (item: TodoItem) => void;
-  onChangeItem: (item: TodoItem) => void;
-}
-
-const CheckboxItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
-  function checkedChange(todo: TodoItem, checked: boolean) {
-    onChangeItem({ ...todo, checked });
-  }
-  const controls = useDragControls();
-  const y = useMotionValue(0);
-  return (
-    <>
-      <Reorder.Item
-        value={todo}
-        id={todo.id}
-        style={{ y }}
-        dragControls={controls}
-        className="px-4 py-2 bg-tint-1 rounded-2
-        flex flex-row items-center gap-5 shadow-[4px_4px_7.1px_0px_rgba(0,0,0,0.30)]
-        hover:outline-checkedOutline hover:outline-solid hover:outline-2
-        "
-      >
-        <div w-full duration-300 flex="~ row items-center gap-2">
-          <Checkbox
-            id={todo.id}
-            checked={todo.checked}
-            onChange={(e) => {
-              checkedChange(todo, e.target.checked);
-            }}
-          />
-          <div className="flex flex-col w-auto px-2">
-            <input
-              type="text"
-              value={todo.text}
-              size={todo.text.length}
-              onChange={(e) => onChangeItem({ ...todo, text: e.target.value })}
-              className={`w-full py-3   rounded-1 font-Switzer font-500  hover:bg-tint-2:30 transition-colors duration-300 appearance-none bg-transparent border-none outline-none text-16px ${
-                todo.checked
-                  ? " text-tint-2/100 line-through"
-                  : "text-tint-3/100"
-              }`}
-            />
-          </div>
-        </div>
-        <Button
-          handleType="delete"
-          color="error"
-          className="rounded-2 p-[5px!important]"
-          onClick={() => onDeleteItem(todo)}
-          startIcon={<div className="i-ri:delete-bin-5-line text-5" />}
-        />
-        <DragIcon dragControls={controls} />
-      </Reorder.Item>
     </>
   );
 };
