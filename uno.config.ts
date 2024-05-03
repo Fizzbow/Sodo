@@ -32,6 +32,7 @@ const formatColors = () => {
 };
 
 export default defineConfig({
+  shortcuts: { "transition-all-color": "transition-colors duration-300" },
   theme: {
     colors: formatColors(),
     breakpoints: {

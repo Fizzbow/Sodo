@@ -3,8 +3,8 @@ import { THEMECOLOR } from "./variable.type";
 export interface Item {
   text: string;
   caption: string;
-  checked?: boolean;
   id: string;
+  checked?: boolean;
   create_time?: string;
   update_time?: string;
 }
