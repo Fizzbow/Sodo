@@ -4,6 +4,8 @@ import DragIcon from "./DragIcon";
 import Checkbox from "./base/Checkbox";
 
 import { Item } from "../types";
+import DropDown from "./base/DropDown";
+import { useState } from "react";
 
 interface ItemProps {
   todo: Item;
@@ -12,11 +14,14 @@ interface ItemProps {
 }
 
 const ReorderItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
+  const [open, setOpen] = useState(false);
+
   function checkedChange(todo: Item, checked: boolean) {
     onChangeItem({ ...todo, checked });
   }
   const controls = useDragControls();
   const y = useMotionValue(0);
+
   return (
     <>
       <Reorder.Item
@@ -59,7 +64,17 @@ const ReorderItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
           <DragIcon dragControls={controls} />
         </div>
 
-        <div className="mt-1 ml-10">{/* <DataType /> */}</div>
+        <div className="mt-1 ml-10 flex flex-row">
+          <DropDown
+            open={open}
+            menus={["1", "2", "3"]}
+            trigger={
+              <Button onClick={() => setOpen(!open)} variant="solid">
+                open
+              </Button>
+            }
+          />
+        </div>
       </Reorder.Item>
     </>
   );
