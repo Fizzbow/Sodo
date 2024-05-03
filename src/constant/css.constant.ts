@@ -22,7 +22,7 @@ export const GLOBAL_VAR_THEME: Record<
   [THEMECOLOR.PURPLE]: {
     primary: "143, 109, 214",
     secondary: "238, 232, 216",
-    checkedOutline: "215, 210, 216",
+    checkedOutline: "235, 227, 252",
     check: "143, 109, 214",
   },
   [THEMECOLOR.DARK]: {

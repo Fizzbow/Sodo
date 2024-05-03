@@ -1,10 +1,16 @@
 import { motion } from "framer-motion";
 import { ReactNode, useState } from "react";
 
+export interface Menu {
+  id: string;
+  label: string;
+}
+
 interface DropdownProps {
   open: boolean;
   trigger: ReactNode;
-  menus: Array<string>;
+  menus: Array<Menu>;
+  setMenu: (id: string) => void;
 }
 
 const container = {
@@ -26,7 +32,9 @@ const item = {
     opacity: 1,
   },
 };
-const DropDown = ({ open, trigger, menus }: DropdownProps) => {
+const DropDown = ({ open, trigger, setMenu, menus }: DropdownProps) => {
+  const [currMenuId, setCurrMenuId] = useState("");
+
   return (
     <motion.div
       initial={false}
@@ -35,12 +43,23 @@ const DropDown = ({ open, trigger, menus }: DropdownProps) => {
     >
       <motion.div className="appearance-none ">{trigger}</motion.div>
       <motion.ul
-        className="container absolute top-[110%] bg-tint-1/100"
+        className="container flex flex-col  p1 gap-2 bg-tint-1/85 border-2 border-solid border-check/50 rounded-2 min-w-24   backdrop-blur-3.75 absolute top-[130%] "
         variants={container}
       >
         {menus.map((menu) => (
-          <motion.li key={menu} variants={item}>
-            {menu}
+          <motion.li
+            className={` ${
+              menu.id === currMenuId
+                ? "text-check/100  bg-checkedOutline/40 outline-2 outline-solid outline-checkedOutline/100"
+                : "text-tint-3/100"
+            } p-1 rounded-1 cursor-pointer`}
+            onClick={() => {
+              setMenu(menu.id), setCurrMenuId(menu.id);
+            }}
+            key={menu.id}
+            variants={item}
+          >
+            {menu.label}
           </motion.li>
         ))}
       </motion.ul>

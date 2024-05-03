@@ -4,7 +4,7 @@ import DragIcon from "./DragIcon";
 import Checkbox from "./base/Checkbox";
 
 import { Item } from "../types";
-import DropDown from "./base/DropDown";
+import DropDown, { Menu } from "./base/DropDown";
 import { useState } from "react";
 
 interface ItemProps {
@@ -15,6 +15,11 @@ interface ItemProps {
 
 const ReorderItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
   const [open, setOpen] = useState(false);
+  const menus: Menu[] = [
+    { id: "created", label: "created at" },
+    { id: "updated", label: "updated at" },
+  ];
+  const [menu, setMenu] = useState<Menu | null>(null);
 
   function checkedChange(todo: Item, checked: boolean) {
     onChangeItem({ ...todo, checked });
@@ -67,10 +72,19 @@ const ReorderItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
         <div className="mt-1 ml-10 flex flex-row">
           <DropDown
             open={open}
-            menus={["1", "2", "3"]}
+            menus={menus}
+            setMenu={(id) => {
+              const curren = menus.find((i) => i.id === id);
+              if (curren) setMenu({ ...curren });
+            }}
             trigger={
-              <Button onClick={() => setOpen(!open)} variant="solid">
-                open
+              <Button
+                className="py-1 text-3"
+                onClick={() => setOpen(!open)}
+                variant="translucent"
+                color="check"
+              >
+                {menu?.label}
               </Button>
             }
           />
