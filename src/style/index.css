@@ -7,9 +7,9 @@ body,
   margin: 0;
   padding: 0;
   width: 100%;
-  cursor: url("../assets/cursor/cursor.svg"), auto;
+  /* cursor: url("../assets/cursor/cursor.svg"), auto; */
 }
-.cursor_class {
+/* .cursor_class {
   fill: red !important;
 }
 .cursor-pointer,
@@ -18,11 +18,7 @@ button {
 }
 .cursor-grab {
   cursor: url("../assets/cursor/grab.svg"), auto !important;
-}
-
-input {
-  cursor: url("../assets/cursor/text.svg"), auto !important;
-}
+} */
 
 html,
 body,

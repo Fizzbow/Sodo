@@ -77,7 +77,7 @@ const ListGroup = ({
           <span>New Item</span>
         </div>
       </section>
-      <div className="overflow-y-scroll scrollStyle p-4 max-h-70%">
+      <div className="overflow-auto scrollStyle p-4 max-h-70%">
         {!!list && (
           <Reorder.Group
             axis="y"

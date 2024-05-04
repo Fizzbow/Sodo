@@ -59,7 +59,7 @@ const ReorderItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
                   update_time: formatDate(new Date()),
                 })
               }
-              className={`flex-1 py-1 px-2  rounded-1 font-Switzer font-500   transition-all-color appearance-none bg-transparent border-none outline-none text-16px ${
+              className={`flex-1 w-sm py-1 px-2  rounded-1 font-Switzer font-500 transition-all-color appearance-none bg-transparent border-none outline-none text-16px ${
                 todo.checked
                   ? "text-tint-2/100 line-through cursor-not-allowed"
                   : "text-tint-3/100 hover:bg-tint-2:30"

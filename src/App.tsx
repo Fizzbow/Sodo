@@ -34,6 +34,7 @@ function App() {
       ?.themeId as THEMECOLOR;
 
     if (!newTheme) return;
+
     setTodoList({ ...todo, theme: newTheme });
   }
 
@@ -48,7 +49,9 @@ function App() {
         <section flex="~ row 1">
           <TodoCard
             todoList={todo}
-            changeTodo={(val) => setTodoList({ ...val })}
+            changeTodo={(val) => {
+              setTodoList({ ...val });
+            }}
           />
         </section>
         <Footer />
