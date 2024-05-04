@@ -4,6 +4,9 @@ import DragIcon from "./DragIcon";
 import Checkbox from "./base/Checkbox";
 
 import { Item } from "../types";
+import DropDown, { Menu } from "./base/DropDown";
+import { useState } from "react";
+import formatDate from "../utils/formatDate";
 
 interface ItemProps {
   todo: Item;
@@ -12,11 +15,19 @@ interface ItemProps {
 }
 
 const ReorderItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
+  const [open, setOpen] = useState(false);
+  const menus: Menu[] = [
+    { id: "created", label: "created at" },
+    { id: "updated", label: "updated at" },
+  ];
+  const [menu, setMenu] = useState<Menu | null>(null);
+
   function checkedChange(todo: Item, checked: boolean) {
     onChangeItem({ ...todo, checked });
   }
   const controls = useDragControls();
   const y = useMotionValue(0);
+
   return (
     <>
       <Reorder.Item
@@ -41,8 +52,14 @@ const ReorderItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
               type="text"
               value={todo.text}
               disabled={todo.checked}
-              onChange={(e) => onChangeItem({ ...todo, text: e.target.value })}
-              className={`flex-1 py-1 px-2  rounded-1 font-Switzer font-500   transition-all-color appearance-none bg-transparent border-none outline-none text-16px ${
+              onChange={(e) =>
+                onChangeItem({
+                  ...todo,
+                  text: e.target.value,
+                  update_time: formatDate(new Date()),
+                })
+              }
+              className={`flex-1 w-sm py-1 px-2  rounded-1 font-Switzer font-500 transition-all-color appearance-none bg-transparent border-none outline-none text-16px ${
                 todo.checked
                   ? "text-tint-2/100 line-through cursor-not-allowed"
                   : "text-tint-3/100 hover:bg-tint-2:30"
@@ -59,7 +76,31 @@ const ReorderItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
           <DragIcon dragControls={controls} />
         </div>
 
-        <div className="mt-1 ml-10">{/* <DataType /> */}</div>
+        <div className="ml-10 flex flex-row items-center text-3 gap-1">
+          <DropDown
+            open={open}
+            menus={menus}
+            defaultMenuId={menus[0].id}
+            setOutSideOpen={(val) => setOpen(val)}
+            setMenu={(id) => {
+              const curren = menus.find((i) => i.id === id);
+              if (curren) setMenu({ ...curren });
+            }}
+            trigger={
+              <Button
+                onClick={() => setOpen(!open)}
+                className="py-1 text-3"
+                variant="translucent"
+                color="check"
+              >
+                {menu?.label}
+              </Button>
+            }
+          />
+          <span className="font-400 text-tint-3/70">
+            {menu?.id === "created" ? todo.create_time : todo.update_time}
+          </span>
+        </div>
       </Reorder.Item>
     </>
   );

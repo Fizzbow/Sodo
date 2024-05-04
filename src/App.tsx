@@ -34,6 +34,7 @@ function App() {
       ?.themeId as THEMECOLOR;
 
     if (!newTheme) return;
+
     setTodoList({ ...todo, theme: newTheme });
   }
 
@@ -45,12 +46,14 @@ function App() {
         className={`themed ${todo.theme} font-Switzer  font-500  p-6 w-full h-full transition-background-color-2 transition-color-2 bg-primary`}
       >
         <ThemeToggle themes={THEMES} setTheme={toggleTheme} />
-        <div flex="~ row 1" className="px-6 ">
+        <section flex="~ row 1">
           <TodoCard
             todoList={todo}
-            changeTodo={(val) => setTodoList({ ...val })}
+            changeTodo={(val) => {
+              setTodoList({ ...val });
+            }}
           />
-        </div>
+        </section>
         <Footer />
       </div>
     </>

@@ -10,7 +10,7 @@ const Checkbox = ({ onChange, id, checked }: CheckboxProps) => {
   return (
     <motion.label
       whileTap={{ scale: 0.9 }}
-      className={`checkboxChecked rounded-full overflow-hidden border-3 border-solid cursor-pointer  flex flex-row items-center w-8 h-8 justify-center  ${
+      className={`checkboxChecked relative rounded-full overflow-hidden border-3 border-solid cursor-pointer  flex flex-row items-center w-8 h-8 justify-center  ${
         checked
           ? " border-checkedOutline/100 bg-check"
           : " border-check bg-check/30"

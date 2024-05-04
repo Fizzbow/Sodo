@@ -1,12 +1,12 @@
-import { Theme } from "../types";
+import { THEMECOLOR, Theme } from "../types";
 
 const THEMES: Theme[] = [
   {
-    themeId: "green",
+    themeId: THEMECOLOR.GREEN,
     color: "#46834D",
   },
-  { themeId: "purple", color: "#8F6DD6" },
-  { themeId: "dark", color: "#23325A" },
-  { themeId: "pinky", color: "#F8EDD9" },
+  { themeId: THEMECOLOR.PURPLE, color: "#8F6DD6" },
+  { themeId: THEMECOLOR.DARK, color: "#23325A" },
+  { themeId: THEMECOLOR.PINKY, color: "#F8EDD9" },
 ];
 export default THEMES;

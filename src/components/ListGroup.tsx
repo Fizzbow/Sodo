@@ -8,6 +8,7 @@ import Dialog from "./base/Dialog";
 import { v4 as uuidv4 } from "uuid";
 import { Card, Item } from "../types";
 import ReorderItem from "./ReorderItem";
+import formatDate from "../utils/formatDate";
 
 interface ListProps {
   list: Array<Item>;
@@ -33,10 +34,18 @@ const ListGroup = ({
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
- 
+
   function handleAcceptAddItem() {
     if (!inputVal) return;
-    onAddItem({ checked: false, text: inputVal, caption: "", id: uuidv4() });
+    const create_time = formatDate(new Date());
+
+    onAddItem({
+      checked: false,
+      text: inputVal,
+      caption: "",
+      id: uuidv4(),
+      create_time,
+    });
     setDialogShow(false);
     setInputVal("");
   }
@@ -59,27 +68,6 @@ const ListGroup = ({
 
   return (
     <>
-      {!!list && (
-        <Reorder.Group
-          axis="y"
-          values={list}
-          onReorder={onChangeList}
-          ref={scoped}
-          className="mb-4  flex flex-col gap-7"
-        >
-          {list.map((todo) => {
-            return (
-              <ReorderItem
-                todo={todo}
-                key={todo.id}
-                onChangeItem={onChangeItem}
-                onDeleteItem={onDeleteItem}
-              />
-            );
-          })}
-        </Reorder.Group>
-      )}
-
       <section className="flex flex-row justify-start">
         <div
           className="text-secondary/100 flex flex-row cursor-pointer gap-2 py-4 px-2 w-28 items-center"
@@ -89,6 +77,28 @@ const ListGroup = ({
           <span>New Item</span>
         </div>
       </section>
+      <div className="overflow-auto scrollStyle p-4 max-h-70%">
+        {!!list && (
+          <Reorder.Group
+            axis="y"
+            values={list}
+            onReorder={onChangeList}
+            ref={scoped}
+            className="mb-4 flex flex-col gap-7"
+          >
+            {list.map((todo) => {
+              return (
+                <ReorderItem
+                  todo={todo}
+                  key={todo.id}
+                  onChangeItem={onChangeItem}
+                  onDeleteItem={onDeleteItem}
+                />
+              );
+            })}
+          </Reorder.Group>
+        )}
+      </div>
 
       <Dialog open={dialogShow} onClose={setDialogShow}>
         <section my-4>

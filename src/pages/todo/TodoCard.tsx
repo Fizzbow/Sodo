@@ -1,6 +1,6 @@
 import ListGroup from "../../components/ListGroup";
-import { TodoItem } from "../../components/ListGroup";
-import { Card } from "../../types";
+
+import { Card, Item } from "../../types";
 
 interface Props {
   todoList: Card;
@@ -8,7 +8,7 @@ interface Props {
 }
 
 const TodoCard = ({ todoList, changeTodo }: Props) => {
-  function changeItem(todoItem: TodoItem, cardTodo: Card) {
+  function changeItem(todoItem: Item, cardTodo: Card) {
     const newList = cardTodo.list.map((i) => {
       if (i.id === todoItem.id) {
         return todoItem;
@@ -21,7 +21,7 @@ const TodoCard = ({ todoList, changeTodo }: Props) => {
     });
   }
 
-  function deleteItem(todoItem: TodoItem, cardTodo: Card) {
+  function deleteItem(todoItem: Item, cardTodo: Card) {
     const newList = cardTodo.list.filter((i) => i.id !== todoItem.id);
     changeTodo({
       ...cardTodo,
