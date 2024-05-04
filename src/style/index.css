@@ -159,3 +159,14 @@ a:hover {
 * {
   box-sizing: border-box;
 }
+
+.scrollStyle::-webkit-scrollbar {
+  width: 6px;
+}
+.scrollStyle::-webkit-scrollbar-track {
+  background: rgba(var(--checkedOutline), 60);
+}
+.scrollStyle::-webkit-scrollbar-thumb {
+  background: rgba(var(--secondary), 100);
+  border-radius: 3px;
+}

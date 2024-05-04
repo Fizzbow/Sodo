@@ -68,27 +68,6 @@ const ListGroup = ({
 
   return (
     <>
-      {!!list && (
-        <Reorder.Group
-          axis="y"
-          values={list}
-          onReorder={onChangeList}
-          ref={scoped}
-          className="mb-4  flex flex-col gap-7"
-        >
-          {list.map((todo) => {
-            return (
-              <ReorderItem
-                todo={todo}
-                key={todo.id}
-                onChangeItem={onChangeItem}
-                onDeleteItem={onDeleteItem}
-              />
-            );
-          })}
-        </Reorder.Group>
-      )}
-
       <section className="flex flex-row justify-start">
         <div
           className="text-secondary/100 flex flex-row cursor-pointer gap-2 py-4 px-2 w-28 items-center"
@@ -98,6 +77,28 @@ const ListGroup = ({
           <span>New Item</span>
         </div>
       </section>
+      <div className="overflow-y-scroll scrollStyle p-4 max-h-70%">
+        {!!list && (
+          <Reorder.Group
+            axis="y"
+            values={list}
+            onReorder={onChangeList}
+            ref={scoped}
+            className="mb-4 flex flex-col gap-7"
+          >
+            {list.map((todo) => {
+              return (
+                <ReorderItem
+                  todo={todo}
+                  key={todo.id}
+                  onChangeItem={onChangeItem}
+                  onDeleteItem={onDeleteItem}
+                />
+              );
+            })}
+          </Reorder.Group>
+        )}
+      </div>
 
       <Dialog open={dialogShow} onClose={setDialogShow}>
         <section my-4>

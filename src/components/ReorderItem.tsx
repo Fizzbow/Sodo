@@ -76,7 +76,7 @@ const ReorderItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
           <DragIcon dragControls={controls} />
         </div>
 
-        <div className="mt-1 ml-10 flex flex-row items-center text-3 gap-1">
+        <div className="ml-10 flex flex-row items-center text-3 gap-1">
           <DropDown
             open={open}
             menus={menus}
