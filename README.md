@@ -1,4 +1,6 @@
-# React TodoList
+<h1 style="text-align:center">Sudo</h1>
+
+> Browser local storage of todo data
 
 ![image info](./src/assets/product/product.jpeg)
 
