@@ -68,9 +68,9 @@ const ListGroup = ({
 
   return (
     <>
-      <section className="flex flex-row justify-start">
+      <section className="flex flex-row justify-start px-4">
         <div
-          className="text-secondary/100 flex flex-row cursor-pointer gap-2 py-4 px-2 w-28 items-center"
+          className="text-secondary/100 flex flex-row cursor-pointer gap-2  w-28 items-center"
           onClick={() => setDialogShow(!dialogShow)}
         >
           <div className="i-gravity-ui:plus text-5 font-600 " />
