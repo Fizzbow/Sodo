@@ -34,7 +34,7 @@ const TodoCard = ({ todoList, changeTodo }: Props) => {
       <div key={todoList.card_id} flex="~ col 1">
         <header
           flex="~ row items-center"
-          className="hover:bg-tint-2:50 cursor-pointer py-3 px-2 rounded-1 mb-4"
+          className="hover:bg-tint-2:50 cursor-pointer p-1 mx-4 rounded-1 mb-2"
         >
           <input
             type="text"

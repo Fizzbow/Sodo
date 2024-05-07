@@ -30,7 +30,7 @@ const Button = ({
   } as Record<Color, string>;
 
   const solidVariants = {
-    primary: "bg-primary/100 text-secondary/100 hover:bg-red/80",
+    primary: "bg-primary/100 text-secondary/100 hover:bg-primary/80",
     secondary: "bg-secondary/100 text-primary/100 hover:bg-secondary/80",
     error: "bg-error/100 text-white/100 hover:bg-error/80",
     check: "bg-check/100 text-primary/100 hover:bg-check/80",
@@ -40,19 +40,19 @@ const Button = ({
       onClick={onClick}
       {...props}
       className={`
+      ${className}
       flex flex-row gap-2
       font-Switzer font-500
       justify-center
       items-center
       p-2
       border-none
-      outline-none
+    
       text-center
       cursor-pointer
       rounded-1
       ${variant === "translucent" && transVariants[color as Color]}
       ${variant === "solid" && solidVariants[color as Color]}
-      ${className}
       `}
       whileTap={{ scale: 0.97 }}
     >
