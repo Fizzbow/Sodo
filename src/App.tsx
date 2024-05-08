@@ -71,16 +71,16 @@ function App() {
         className={`themed ${todo.theme} font-Switzer  font-500  p-6 w-full h-full transition-background-color-2 transition-color-2 bg-primary`}
       >
         <ThemeToggle themes={THEMES} setTheme={toggleTheme} />
-        <section flex="~ row 1">
-          <TodoCard
-            todoList={todo}
-            onChangeListOrder={(card) => handleChangeList(card)}
-            onDeleteItem={(id) => handleDeleteList(id)}
-            onAddItem={(text) => handleAddList(text)}
-            onChangeItem={(item) => handleChangeItem(item)}
-          />
-        </section>
-        <Footer />
+
+        <TodoCard
+          todoList={todo}
+          onChangeListOrder={(card) => handleChangeList(card)}
+          onDeleteItem={(id) => handleDeleteList(id)}
+          onAddItem={(text) => handleAddList(text)}
+          onChangeItem={(item) => handleChangeItem(item)}
+        />
+
+        {/* <Footer /> */}
       </div>
     </>
   );

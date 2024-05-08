@@ -68,28 +68,27 @@ const ListGroup = ({
           <span>New Item</span>
         </div>
       </section>
-      <div className="overflow-auto scrollStyle p-4 max-h-70%">
-        {!!list && (
-          <Reorder.Group
-            axis="y"
-            values={list}
-            onReorder={onChangeListOrder}
-            ref={scoped}
-            className="mb-4 flex flex-col gap-7"
-          >
-            {list.map((todo) => {
-              return (
-                <ReorderItem
-                  todo={todo}
-                  key={todo.id}
-                  onChangeItem={(item) => onChangeItem(item)}
-                  onDeleteItem={onDeleteItem}
-                />
-              );
-            })}
-          </Reorder.Group>
-        )}
-      </div>
+
+      {!!list && (
+        <Reorder.Group
+          axis="y"
+          values={list}
+          onReorder={onChangeListOrder}
+          ref={scoped}
+          className="mb-4 flex flex-col gap-7 overflow-auto scrollStyle p-4 h-100%"
+        >
+          {list.map((todo) => {
+            return (
+              <ReorderItem
+                todo={todo}
+                key={todo.id}
+                onChangeItem={(item) => onChangeItem(item)}
+                onDeleteItem={onDeleteItem}
+              />
+            );
+          })}
+        </Reorder.Group>
+      )}
 
       <Dialog open={dialogShow} onClose={setDialogShow}>
         <section my-4>

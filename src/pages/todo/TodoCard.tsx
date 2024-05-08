@@ -19,7 +19,7 @@ const TodoCard = ({
 }: Props) => {
   return (
     <>
-      <div key={todoList.card_id} flex="~ col 1">
+      <div key={todoList.card_id} flex="~ col 1" className="overflow-hidden">
         <header
           flex="~ row items-center"
           className="hover:bg-tint-2:50 cursor-pointer p-1 mx-4 rounded-1 mb-2"

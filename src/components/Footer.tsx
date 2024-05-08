@@ -22,7 +22,7 @@ const navArr: IconProps[] = [
 const Footer = () => {
   return (
     <>
-      <footer w-full mt-8 flex="~ row items-center justify-center">
+      <footer w-full flex="~ row items-center justify-center">
         <nav
           className="bg-[rgba(255,255,255,0.56)] p-2  rounded-3"
           flex="~ row gap-2"
@@ -44,10 +44,10 @@ interface IconProps {
 const IconBtn = ({ handler, icon }: IconProps) => {
   return (
     <div
-      className={`cursor-pointer bg-tint-1/100 p-2 rounded-2`}
+      className={`cursor-pointer  p-2 rounded-full hover:text-primary/100 text-[#AEAEAE] hover:bg-tint-1/100  transition-all-color`}
       onClick={() => handler()}
     >
-      <div className={`${icon} text-7 text-[#AEAEAE]`} />
+      <div className={`${icon}  text-6 `} />
     </div>
   );
 };

@@ -31,7 +31,7 @@ const ReorderItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
         id={todo.id}
         style={{ y }}
         dragControls={controls}
-        className="px-4 py-2 bg-tint-1 rounded-2
+        className="px-4 py-2 bg-tint-1 flex-1 rounded-2
            shadow-[4px_4px_7.1px_0px_rgba(0,0,0,0.30)]
           hover:outline-checkedOutline hover:outline-solid hover:outline-2"
       >
@@ -57,7 +57,7 @@ const ReorderItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
                   text: e.target.value,
                 })
               }
-              className={`flex-1 w-sm py-1 px-2  rounded-1 font-Switzer font-500 transition-all-color appearance-none bg-transparent border-none outline-none text-16px ${
+              className={`flex-1 py-1 px-2  rounded-1 font-Switzer font-500 transition-all-color appearance-none bg-transparent border-none outline-none text-16px ${
                 todo.checked
                   ? "text-tint-2/100 line-through cursor-not-allowed"
                   : "text-tint-3/100 hover:bg-tint-2:30"
