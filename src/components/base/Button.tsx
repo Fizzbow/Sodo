@@ -47,7 +47,6 @@ const Button = ({
       items-center
       p-2
       border-none
-    
       text-center
       cursor-pointer
       rounded-1

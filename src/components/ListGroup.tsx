@@ -5,24 +5,22 @@ import { useEffect, useRef, useState } from "react";
 import Button from "./base/Button";
 
 import Dialog from "./base/Dialog";
-import { v4 as uuidv4 } from "uuid";
 import { Card, Item } from "../types";
 import ReorderItem from "./ReorderItem";
-import formatDate from "../utils/formatDate";
 
 interface ListProps {
   list: Array<Item>;
   onChangeItem: (item: Item) => void;
   onDeleteItem: (item: Item) => void;
-  onAddItem: (item: Item) => void;
-  onChangeList: (list: Card["list"]) => void;
+  onAddItem: (text: string) => void;
+  onChangeListOrder: (list: Card["list"]) => void;
 }
 
 const ListGroup = ({
   list,
   onChangeItem,
   onDeleteItem,
-  onChangeList,
+  onChangeListOrder,
   onAddItem,
 }: ListProps) => {
   const [scoped, animate] = useAnimate();
@@ -37,15 +35,8 @@ const ListGroup = ({
 
   function handleAcceptAddItem() {
     if (!inputVal) return;
-    const create_time = formatDate(new Date());
 
-    onAddItem({
-      checked: false,
-      text: inputVal,
-      caption: "",
-      id: uuidv4(),
-      create_time,
-    });
+    onAddItem(inputVal);
     setDialogShow(false);
     setInputVal("");
   }
@@ -77,28 +68,27 @@ const ListGroup = ({
           <span>New Item</span>
         </div>
       </section>
-      <div className="overflow-auto scrollStyle p-4 max-h-70%">
-        {!!list && (
-          <Reorder.Group
-            axis="y"
-            values={list}
-            onReorder={onChangeList}
-            ref={scoped}
-            className="mb-4 flex flex-col gap-7"
-          >
-            {list.map((todo) => {
-              return (
-                <ReorderItem
-                  todo={todo}
-                  key={todo.id}
-                  onChangeItem={onChangeItem}
-                  onDeleteItem={onDeleteItem}
-                />
-              );
-            })}
-          </Reorder.Group>
-        )}
-      </div>
+
+      {!!list && (
+        <Reorder.Group
+          axis="y"
+          values={list}
+          onReorder={onChangeListOrder}
+          ref={scoped}
+          className="mb-4 flex flex-col gap-7 overflow-auto scrollStyle p-4 h-100%"
+        >
+          {list.map((todo) => {
+            return (
+              <ReorderItem
+                todo={todo}
+                key={todo.id}
+                onChangeItem={(item) => onChangeItem(item)}
+                onDeleteItem={onDeleteItem}
+              />
+            );
+          })}
+        </Reorder.Group>
+      )}
 
       <Dialog open={dialogShow} onClose={setDialogShow}>
         <section my-4>
