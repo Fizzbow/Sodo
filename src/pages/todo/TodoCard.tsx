@@ -4,31 +4,19 @@ import { Card, Item } from "../../types";
 
 interface Props {
   todoList: Card;
-  changeTodo: (list: Card) => void;
+  onChangeListOrder: (list: Card) => void;
+  onAddItem: (text: string) => void;
+  onDeleteItem: (id: string) => void;
+  onChangeItem: (item: Item) => void;
 }
 
-const TodoCard = ({ todoList, changeTodo }: Props) => {
-  function changeItem(todoItem: Item, cardTodo: Card) {
-    const newList = cardTodo.list.map((i) => {
-      if (i.id === todoItem.id) {
-        return todoItem;
-      }
-      return i;
-    });
-    changeTodo({
-      ...cardTodo,
-      list: newList,
-    });
-  }
-
-  function deleteItem(todoItem: Item, cardTodo: Card) {
-    const newList = cardTodo.list.filter((i) => i.id !== todoItem.id);
-    changeTodo({
-      ...cardTodo,
-      list: newList,
-    });
-  }
-
+const TodoCard = ({
+  todoList,
+  onChangeItem,
+  onDeleteItem,
+  onChangeListOrder,
+  onAddItem,
+}: Props) => {
   return (
     <>
       <div key={todoList.card_id} flex="~ col 1">
@@ -43,21 +31,19 @@ const TodoCard = ({ todoList, changeTodo }: Props) => {
             bg-transparent
             appearance-none
             value={todoList.title}
-            onChange={(e) => changeTodo({ ...todoList, title: e.target.value })}
+            onChange={(e) =>
+              onChangeListOrder({ ...todoList, title: e.target.value })
+            }
           />
         </header>
 
         <ListGroup
-          onChangeList={(list) => {
-            changeTodo({ ...todoList, list });
+          onChangeListOrder={(list) => {
+            onChangeListOrder({ ...todoList, list });
           }}
-          onAddItem={(i) => {
-            const { list } = todoList;
-            list.push(i);
-            changeTodo({ ...todoList, list });
-          }}
-          onChangeItem={(todoItem) => changeItem(todoItem, todoList)}
-          onDeleteItem={(todoItem) => deleteItem(todoItem, todoList)}
+          onAddItem={(text) => onAddItem(text)}
+          onChangeItem={(todoItem) => onChangeItem(todoItem)}
+          onDeleteItem={(todoItem) => onDeleteItem(todoItem.id)}
           list={todoList.list}
         />
       </div>

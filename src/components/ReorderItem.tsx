@@ -6,7 +6,6 @@ import Checkbox from "./base/Checkbox";
 import { Item } from "../types";
 import DropDown, { Menu } from "./base/DropDown";
 import { useState } from "react";
-import formatDate from "../utils/formatDate";
 
 interface ItemProps {
   todo: Item;
@@ -22,9 +21,6 @@ const ReorderItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
   ];
   const [menu, setMenu] = useState<Menu | null>(null);
 
-  function checkedChange(todo: Item, checked: boolean) {
-    onChangeItem({ ...todo, checked });
-  }
   const controls = useDragControls();
   const y = useMotionValue(0);
 
@@ -44,9 +40,12 @@ const ReorderItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
             <Checkbox
               id={todo.id}
               checked={todo.checked}
-              onChange={(e) => {
-                checkedChange(todo, e.target.checked);
-              }}
+              onChange={(e) =>
+                onChangeItem({
+                  checked: e.target.checked,
+                  id: todo.id,
+                })
+              }
             />
             <input
               type="text"
@@ -54,9 +53,8 @@ const ReorderItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
               disabled={todo.checked}
               onChange={(e) =>
                 onChangeItem({
-                  ...todo,
+                  id: todo.id,
                   text: e.target.value,
-                  update_time: formatDate(new Date()),
                 })
               }
               className={`flex-1 w-sm py-1 px-2  rounded-1 font-Switzer font-500 transition-all-color appearance-none bg-transparent border-none outline-none text-16px ${
