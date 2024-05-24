@@ -21,18 +21,16 @@ const navArr: IconProps[] = [
 ];
 const Footer = () => {
   return (
-    <>
-      <footer w-full flex="~ row items-center justify-center">
-        <nav
-          className="bg-[rgba(255,255,255,0.56)] p-2  rounded-3"
-          flex="~ row gap-2"
-        >
-          {navArr.map((nav) => (
-            <IconBtn icon={nav.icon} handler={nav.handler} />
-          ))}
-        </nav>
-      </footer>
-    </>
+    <footer w-full flex="~ row items-center justify-center">
+      <nav
+        className="bg-[rgba(255,255,255,0.56)] p-2  rounded-3"
+        flex="~ row gap-2"
+      >
+        {navArr.map((nav) => (
+          <IconBtn icon={nav.icon} handler={nav.handler} />
+        ))}
+      </nav>
+    </footer>
   );
 };
 
