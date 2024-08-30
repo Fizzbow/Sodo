@@ -1,6 +1,6 @@
 import { Card, THEMECOLOR } from "../types";
 
-const TODO_LIST: string = "__react__fizz__todo_list__";
+const TODO_LIST: string = "__fizz__todo_list__";
 const GITHUB_LINK: string = "https://github.com/Fizzbow/todolist";
 
 const INIT_TODO_CARD: Card = {

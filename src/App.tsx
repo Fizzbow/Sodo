@@ -2,7 +2,6 @@ import { useEffect } from "react";
 
 import THEMES from "./constant/themes.constant";
 import ThemeToggle from "./components/ThemeToggle";
-import Footer from "./components/Footer";
 import { Action, Card, Item, Theme, THEMECOLOR } from "./types";
 import { INIT_TODO_CARD, TODO_LIST } from "./constant/todo.constant";
 import TodoCard from "./pages/todo/TodoCard";
