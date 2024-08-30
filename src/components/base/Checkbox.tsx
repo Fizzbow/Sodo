@@ -11,18 +11,16 @@ const Checkbox = ({ onChange, id, checked }: CheckboxProps) => {
   const opacity = useTransform(pathLength, [0.05, 0.15], [0, 1]);
   return (
     <motion.label
-      whileTap={{ scale: 0.9 }}
       animate={{
         background: checked ? "rgba(var(--check),1)" : "rgba(var(--check),0.3)",
       }}
-      className={`checkboxChecked relative rounded-full overflow-hidden border-3 border-solid cursor-pointer  flex flex-row items-center w-8 h-8 justify-center  ${
+      className={`relative rounded-full overflow-hidden border-3 border-solid cursor-pointer  flex flex-row items-center w-8 h-8 justify-center  ${
         checked ? " border-checkedOutline/100 " : " border-check"
       }`}
     >
       <input
         onChange={onChange}
         checked={checked || false}
-        className="checkInput "
         type="checkbox"
         id={`checkbox${id}`}
         text-center
@@ -32,7 +30,7 @@ const Checkbox = ({ onChange, id, checked }: CheckboxProps) => {
 
       {/* <div className="checkedIcon i-foundation:check text-5  absolute text-tint-1/100" /> */}
 
-      <svg
+      <motion.svg
         xmlns="http://www.w3.org/2000/svg"
         width="37"
         height="34"
@@ -48,7 +46,7 @@ const Checkbox = ({ onChange, id, checked }: CheckboxProps) => {
           stroke="#fff"
           d="M9 20.9091L14.5 25.4091L21.5 17.5L28.5 9.40909"
         />
-      </svg>
+      </motion.svg>
     </motion.label>
   );
 };

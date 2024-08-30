@@ -1,6 +1,5 @@
 import { Reorder, useAnimate } from "framer-motion";
 import "../style/checkbox.css";
-import { stagger } from "framer-motion/dom";
 import { useEffect, useRef, useState } from "react";
 import Button from "./base/Button";
 
@@ -23,7 +22,7 @@ const ListGroup = ({
   onChangeListOrder,
   onAddItem,
 }: ListProps) => {
-  const [scoped, animate] = useAnimate();
+  const [scoped] = useAnimate();
   /** dialog state */
   const [dialogShow, setDialogShow] = useState(false);
   const [inputVal, setInputVal] = useState("");
@@ -41,22 +40,6 @@ const ListGroup = ({
     setInputVal("");
   }
 
-  /** checkbox animation */
-  useEffect(() => {
-    if (!list || !list.length) return;
-    if (list.every((item) => item.checked)) {
-      const lastCompletedItem = list.findIndex((item) => !item.checked);
-      animate(
-        ".checkboxChecked",
-        { scale: [1, 1.25, 1] },
-        {
-          duration: 0.35,
-          delay: stagger(0.075, { from: lastCompletedItem }),
-        }
-      );
-    }
-  }, [list]);
-
   return (
     <>
       <section className="flex flex-row justify-start px-4">
@@ -64,7 +47,7 @@ const ListGroup = ({
           className="text-secondary/100 flex flex-row cursor-pointer gap-2  w-28 items-center"
           onClick={() => setDialogShow(!dialogShow)}
         >
-          <div className="i-gravity-ui:plus text-5 font-600 " />
+          <div className="i-gravity-ui:plus text-5 font-600" />
           <span>New Item</span>
         </div>
       </section>
