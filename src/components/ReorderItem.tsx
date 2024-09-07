@@ -6,6 +6,7 @@ import Checkbox from "./base/Checkbox";
 import { Item } from "../types";
 import DropDown, { Menu } from "./base/DropDown";
 import { useState } from "react";
+import TodoInput from "./base/TodoInput";
 
 interface ItemProps {
   todo: Item;
@@ -47,21 +48,15 @@ const ReorderItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
                 })
               }
             />
-            <input
-              type="text"
+            <TodoInput
               value={todo.text}
-              disabled={todo.checked}
+              maxLength={200}
               onChange={(e) => {
                 onChangeItem({
                   id: todo.id,
                   text: e.target.value,
                 });
               }}
-              className={`flex-1 py-1 px-2  rounded-1 font-Switzer font-500 transition-all-color appearance-none bg-transparent border-none outline-none text-16px ${
-                todo.checked
-                  ? "text-tint-2/100 line-through cursor-not-allowed"
-                  : "text-tint-3/100 hover:bg-tint-2:30"
-              }`}
             />
           </div>
           <Button
