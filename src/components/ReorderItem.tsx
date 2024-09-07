@@ -51,12 +51,12 @@ const ReorderItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
               type="text"
               value={todo.text}
               disabled={todo.checked}
-              onChange={(e) =>
+              onChange={(e) => {
                 onChangeItem({
                   id: todo.id,
                   text: e.target.value,
-                })
-              }
+                });
+              }}
               className={`flex-1 py-1 px-2  rounded-1 font-Switzer font-500 transition-all-color appearance-none bg-transparent border-none outline-none text-16px ${
                 todo.checked
                   ? "text-tint-2/100 line-through cursor-not-allowed"

@@ -44,7 +44,7 @@ const ListGroup = ({
     <>
       <section className="flex flex-row justify-start px-4">
         <div
-          className="text-secondary/100 flex flex-row cursor-pointer gap-2  w-28 items-center"
+          className="text-secondary/100 flex flex-row cursor-pointer gap-2 w-28 items-center"
           onClick={() => setDialogShow(!dialogShow)}
         >
           <div className="i-gravity-ui:plus text-5 font-600" />
@@ -76,10 +76,10 @@ const ListGroup = ({
       <Dialog open={dialogShow} onClose={setDialogShow}>
         <section my-4>
           <input
-            min-w-xs
-            py-2
-            text-16px
             type="text"
+            min-w-xs
+            text-16px
+            py-2
             border-none
             border-b-tint-2
             border-b-solid

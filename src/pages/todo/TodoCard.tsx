@@ -41,7 +41,9 @@ const TodoCard = ({
           onChangeListOrder({ ...todoList, list });
         }}
         onAddItem={(text) => onAddItem(text)}
-        onChangeItem={(todoItem) => onChangeItem(todoItem)}
+        onChangeItem={(todoItem) => {
+          onChangeItem(todoItem);
+        }}
         onDeleteItem={(todoItem) => onDeleteItem(todoItem.id)}
         list={todoList.list}
       />

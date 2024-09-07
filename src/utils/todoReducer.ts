@@ -56,9 +56,9 @@ const todoReducer = (todo: Card, action: CardAction) => {
     }
     case Action.CHANGE_ITEM: {
       const idx = list.findIndex((item) => item.id === action.id);
-      if (action.text) {
-        list[idx].text = action.text;
-      }
+
+      list[idx].text = action.text;
+
       list[idx].checked = action.checked;
       list[idx].update_time = formatDate(new Date());
       break;
