@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 
 import THEMES from "./constant/themes.constant";
-import ThemeToggle from "./components/ThemeToggle";
 import { Action, Card, Item, Theme, THEMECOLOR } from "./types";
 import { INIT_TODO_CARD, TODO_LIST } from "./constant/todo.constant";
 import TodoCard from "./pages/todo/TodoCard";
@@ -67,9 +66,22 @@ function App() {
       <div
         overflow-hidden
         flex="~ col"
-        className={`themed ${todo.theme} font-Poppins  font-500  p-6 w-full h-full transition-background-color-2 transition-color-2 bg-primary`}
+        className={`themed ${todo.theme} font-Poppins  font-500  px-6 w-full h-full transition-background-color-2 transition-color-2 bg-primary`}
       >
-        <ThemeToggle themes={THEMES} setTheme={toggleTheme} />
+        {/* <ThemeToggle themes={THEMES} setTheme={toggleTheme} /> */}
+
+        <header className="py-5" flex="~ row items-center justify-center">
+          {THEMES.map((theme) => (
+            <div
+              key={theme.themeId}
+              style={{
+                background: theme.color,
+              }}
+              onClick={() => toggleTheme(theme.themeId)}
+              className="w-3 h-3 rounded-[50%] mx-1 cursor-pointer shadow-tint-3/100 shadow-sm"
+            />
+          ))}
+        </header>
 
         <TodoCard
           todoList={todo}

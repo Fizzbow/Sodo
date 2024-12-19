@@ -55,13 +55,22 @@ const todoReducer = (todo: Card, action: CardAction) => {
       break;
     }
     case Action.CHANGE_ITEM: {
-      const idx = list.findIndex((item) => item.id === action.id);
+      const newList = list.map((item) => {
+        if (item.id === action.id) {
+          return {
+            ...item,
+            text: action.text,
+            checked: action.checked,
+            update_time: formatDate(new Date()),
+          };
+        }
+        return item;
+      });
 
-      list[idx].text = action.text;
-
-      list[idx].checked = action.checked;
-      list[idx].update_time = formatDate(new Date());
-      break;
+      return {
+        ...todo,
+        list: newList,
+      };
     }
     case Action.DELETE: {
       const filteredList = list.filter((i) => i.id !== action.id);
