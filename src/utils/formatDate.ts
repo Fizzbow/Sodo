@@ -3,7 +3,7 @@ const formatDate = (date: Date) => {
   const month = date.getMonth() + 1;
   const day = date.getDate();
 
-  return `${year}-${month}-${day}`;
+  return `${year}/${month}/${day}`;
 };
 
 export default formatDate;

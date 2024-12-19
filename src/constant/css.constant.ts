@@ -6,7 +6,7 @@ export const GLOBAL_VAR_STATUS: Record<CSSStatus, string> = {
   error: "248,113,113",
   "tint-1": "255, 255, 255",
   "tint-2": "209, 209, 214",
-  "tint-3": "97, 97, 101",
+  "tint-3": "138, 138, 138",
 };
 
 export const GLOBAL_VAR_THEME: Record<

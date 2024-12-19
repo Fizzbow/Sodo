@@ -58,7 +58,7 @@ const ReorderItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
             });
           }}
         />
-        <div className="flex flex-row items-center text-3 gap-2">
+        <div className="flex flex-row font-Switzer items-center text-3 gap-2">
           <DropDown
             open={open}
             menus={menus}

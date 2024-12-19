@@ -81,6 +81,13 @@ export default defineConfig({
             provider: "none",
           },
         ],
+        Satoshi: [
+          { name: "Satoshi", weights: ["300", "400", "500", "600", "800"] },
+          {
+            name: "sans-serif",
+            provider: "none",
+          },
+        ],
       },
     }),
     presetAttributify(),
