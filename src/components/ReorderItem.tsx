@@ -32,69 +32,66 @@ const ReorderItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
       style={{ y }}
       dragListener={false}
       dragControls={controls}
-      className="px-4 py-2 bg-tint-1  rounded-2
-
+      className="px-2 py-1.5 bg-tint-1  rounded-2 flex flex-row gap-1 items-center
            shadow-[4px_4px_7.1px_0px_rgba(0,0,0,0.10)]
           hover:outline-checkedOutline hover:outline-solid hover:outline-2"
     >
-      <div className=" flex flex-row items-center gap-5">
-        <div flex="~ row items-center gap-2 1">
-          <Checkbox
-            id={todo.id}
-            checked={todo.checked}
-            onChange={(e) =>
-              onChangeItem({
-                checked: e.target.checked,
-                id: todo.id,
-              })
+      <Checkbox
+        id={todo.id}
+        checked={todo.checked}
+        onChange={(e) =>
+          onChangeItem({
+            checked: e.target.checked,
+            id: todo.id,
+          })
+        }
+      />
+      <div className="flex flex-col flex-1">
+        <TodoInput
+          disabled={todo.checked}
+          value={todo.text}
+          maxLength={200}
+          onChange={(e) => {
+            onChangeItem({
+              id: todo.id,
+              text: e.target.value,
+            });
+          }}
+        />
+        <div className="flex flex-row items-center text-3 gap-2">
+          <DropDown
+            open={open}
+            menus={menus}
+            defaultMenuId={menus[0].id}
+            setOutSideOpen={(val) => setOpen(val)}
+            setMenu={(id) => {
+              const curren = menus.find((i) => i.id === id);
+              if (curren) setMenu({ ...curren });
+            }}
+            trigger={
+              <span
+                text="check/100"
+                className="font-400 cursor-pointer"
+                onClick={() => setOpen(!open)}
+              >
+                {menu?.label}
+              </span>
             }
           />
-          <TodoInput
-            disabled={todo.checked}
-            value={todo.text}
-            maxLength={200}
-            onChange={(e) => {
-              onChangeItem({
-                id: todo.id,
-                text: e.target.value,
-              });
-            }}
-          />
+          <span className="font-400 text-tint-3/70">
+            {menu?.id === "created" ? todo.create_time : todo.update_time}
+          </span>
         </div>
-        <Button
-          handleType="delete"
-          color="error"
-          className="rounded-2 p-[5px!important]"
-          onClick={() => onDeleteItem(todo)}
-          startIcon={<div className="i-ri:delete-bin-5-line text-5" />}
-        />
-        <DragIcon dragControls={controls} />
       </div>
 
-      <div className="ml-10 mt-1 flex flex-row items-center text-3 gap-2">
-        <DropDown
-          open={open}
-          menus={menus}
-          defaultMenuId={menus[0].id}
-          setOutSideOpen={(val) => setOpen(val)}
-          setMenu={(id) => {
-            const curren = menus.find((i) => i.id === id);
-            if (curren) setMenu({ ...curren });
-          }}
-          trigger={
-            <span
-              text="check/100"
-              className="font-400 cursor-pointer"
-              onClick={() => setOpen(!open)}
-            >
-              {menu?.label}
-            </span>
-          }
-        />
-        <span className="font-400 text-tint-3/70">
-          {menu?.id === "created" ? todo.create_time : todo.update_time}
-        </span>
-      </div>
+      <Button
+        handleType="delete"
+        color="error"
+        className="rounded-1 p-[2px!important]"
+        onClick={() => onDeleteItem(todo)}
+        startIcon={<div className="i-ri:delete-bin-line text-5" />}
+      />
+      <DragIcon dragControls={controls} />
     </Reorder.Item>
   );
 };

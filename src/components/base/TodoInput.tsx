@@ -1,11 +1,8 @@
 import { useEffect, useRef } from "react";
 
-interface TodoInputProps
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  checked?: boolean;
-}
-
-const TodoInput = ({ checked, ...props }: TodoInputProps) => {
+const TodoInput = ({
+  ...props
+}: React.TextareaHTMLAttributes<HTMLTextAreaElement>) => {
   const todoInputRef = useRef<HTMLTextAreaElement | null>(null);
 
   useEffect(() => {

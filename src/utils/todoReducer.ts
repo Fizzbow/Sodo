@@ -59,8 +59,7 @@ const todoReducer = (todo: Card, action: CardAction) => {
         if (item.id === action.id) {
           return {
             ...item,
-            text: action.text,
-            checked: action.checked,
+            ...action,
             update_time: formatDate(new Date()),
           };
         }

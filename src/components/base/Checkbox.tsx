@@ -14,7 +14,7 @@ const Checkbox = ({ onChange, id, checked }: CheckboxProps) => {
       animate={{
         background: checked ? "rgba(var(--check),1)" : "rgba(var(--check),0.3)",
       }}
-      className={`relative rounded-full overflow-hidden border-3 border-solid cursor-pointer  flex flex-row items-center w-8 h-8 justify-center  ${
+      className={`relative rounded-full overflow-hidden border-3 border-solid cursor-pointer  flex flex-row items-center w-6 h-6 justify-center  ${
         checked ? " border-checkedOutline/100 " : " border-check"
       }`}
     >
