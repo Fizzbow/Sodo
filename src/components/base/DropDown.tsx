@@ -79,7 +79,7 @@ const DropDown = ({
       </motion.div>
       <motion.ul
         ref={menuRef}
-        className="container shadow-sm flex flex-col p2 gap-2 bg-tint-1/90 border-1.5px border-solid border-tint-2/60 rounded-2 min-w-24 backdrop-blur-3.75 absolute top-[130%] "
+        className="container shadow-sm flex flex-col p2 gap-2 bg-tint-1 border-1.5px border-solid border-tint-2/60 rounded-2 min-w-26 backdrop-blur-3.75 absolute top-[130%] "
         variants={container}
       >
         {menus.map((menu) => (
@@ -88,7 +88,7 @@ const DropDown = ({
               menu.id === currMenuId
                 ? "text-check/100  bg-checkedOutline/60 outline-2 outline-solid outline-checkedOutline/100"
                 : "text-tint-2/100"
-            } px-2 py-1 rounded-1 cursor-pointer`}
+            } px-2 py-1 rounded-1 text-nowrap cursor-pointer`}
             onClick={() => {
               setMenu(menu.id), setCurrMenuId(menu.id);
             }}

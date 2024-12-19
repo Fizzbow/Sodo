@@ -67,7 +67,7 @@ function App() {
       <div
         overflow-hidden
         flex="~ col"
-        className={`themed ${todo.theme} font-Switzer  font-500  p-6 w-full h-full transition-background-color-2 transition-color-2 bg-primary`}
+        className={`themed ${todo.theme} font-Poppins  font-500  p-6 w-full h-full transition-background-color-2 transition-color-2 bg-primary`}
       >
         <ThemeToggle themes={THEMES} setTheme={toggleTheme} />
 

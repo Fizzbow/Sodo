@@ -42,7 +42,7 @@ const Button = ({
       className={`
       ${className}
       flex flex-row gap-2
-      font-Switzer font-500
+      font-Poppins font-500
       justify-center
       items-center
       p-2

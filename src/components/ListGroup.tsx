@@ -58,7 +58,7 @@ const ListGroup = ({
           values={list}
           onReorder={onChangeListOrder}
           ref={scoped}
-          className="mb-4 flex flex-col gap-7 overflow-auto scrollStyle p-4 h-100%"
+          className="mb-4 flex flex-col gap-4 overflow-auto scrollStyle p-4 h-100%"
         >
           {list.map((todo) => {
             return (
