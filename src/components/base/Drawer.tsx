@@ -3,11 +3,11 @@ import { AnimatePresence, motion, Transition, Variants } from "motion/react";
 import Backdrop from "./Backdrop";
 import { BackdropProps } from "../../types/ui.type";
 
-type Position = "left" | "right";
+type Arc = "left" | "right";
 
 interface DrawerProps extends BackdropProps {
   key: string;
-  position?: Position;
+  arc?: Arc;
 }
 
 const defaultVariantTransition: Transition = {
@@ -15,7 +15,7 @@ const defaultVariantTransition: Transition = {
   type: "spring",
   delay: 0.4,
 };
-const defaultDrawerVariants: Record<Position, Variants> = {
+const defaultDrawerVariants: Record<Arc, Variants> = {
   left: {
     visible: {
       x: "20px",
@@ -49,15 +49,14 @@ const Drawer = ({
   onClose,
   children,
   key,
-  position = "left",
+  arc = "left",
 }: DrawerProps) => {
-  console.log("variants", defaultDrawerVariants, { open }, position);
   return (
     <AnimatePresence>
       <Backdrop key={key} open={open} onClose={onClose}>
         {open && (
           <motion.div
-            variants={defaultDrawerVariants[position]}
+            variants={defaultDrawerVariants[arc]}
             key={key}
             initial="hidden"
             exit="hidden"
