@@ -1,4 +1,4 @@
-import { Reorder, useAnimate } from "framer-motion";
+import { Reorder, useAnimate } from "motion/react";
 import "../style/checkbox.css";
 import { useEffect, useRef, useState } from "react";
 import Button from "./base/Button";

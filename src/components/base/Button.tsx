@@ -1,4 +1,4 @@
-import { MotionProps, motion } from "framer-motion";
+import { MotionProps, motion } from "motion/react";
 import { ReactNode } from "react";
 import { CSSStatus, ThemeVariable } from "../../types";
 

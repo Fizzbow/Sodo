@@ -16,6 +16,7 @@ const TodoInput = ({
   return (
     <textarea
       {...props}
+      onClick={(e) => e.stopPropagation()}
       ref={todoInputRef}
       rows={1}
       className="flex-1 overflow-hidden font-Switzer font-300 py-1 text-tint-3/100 hover:bg-tint-2:30

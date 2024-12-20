@@ -1,4 +1,4 @@
-import { DragControls } from "framer-motion";
+import { DragControls } from "motion/react";
 
 interface Props {
   dragControls: DragControls;

@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "motion/react";
 
 interface CheckboxProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;

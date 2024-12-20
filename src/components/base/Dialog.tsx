@@ -1,20 +1,14 @@
-import { ReactNode } from "react";
 import "../../style/dialog.css";
 import Button from "./Button";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
+import { BackdropProps } from "../../types/ui.type";
+import Backdrop from "./Backdrop";
 
-interface DialogProps {
-  children: ReactNode;
-  open: boolean;
-  onClose: (show: boolean) => void;
-}
+interface DialogProps extends BackdropProps {}
 
 const Dialog = ({ onClose, open, children }: DialogProps) => {
   return (
-    <div
-      className={`dialog ${open ? "flex" : "hidden"}`}
-      onClick={() => onClose(false)}
-    >
+    <Backdrop open={open} onClose={onClose}>
       <motion.div
         onClick={(e) => e.stopPropagation()}
         initial={{ opacity: 0 }}
@@ -41,7 +35,7 @@ const Dialog = ({ onClose, open, children }: DialogProps) => {
         </header>
         {children}
       </motion.div>
-    </div>
+    </Backdrop>
   );
 };
 

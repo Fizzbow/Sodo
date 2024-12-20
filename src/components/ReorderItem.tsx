@@ -1,4 +1,9 @@
-import { Reorder, useDragControls, useMotionValue } from "framer-motion";
+import {
+  Reorder,
+  useDragControls,
+  useMotionValue,
+  MotionProps,
+} from "motion/react";
 import Button from "./base/Button";
 import DragIcon from "./DragIcon";
 import Checkbox from "./base/Checkbox";
@@ -8,13 +13,19 @@ import DropDown, { Menu } from "./base/DropDown";
 import { useState } from "react";
 import TodoInput from "./base/TodoInput";
 
-interface ItemProps {
+interface ItemProps extends MotionProps {
   todo: Item;
   onDeleteItem: (item: Item) => void;
   onChangeItem: (item: Item) => void;
+  onClick?: () => void;
 }
 
-const ReorderItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
+const ReorderItem = ({
+  todo,
+  onDeleteItem,
+  onChangeItem,
+  ...props
+}: ItemProps) => {
   const [open, setOpen] = useState(false);
   const menus: Menu[] = [
     { id: "created", label: "created at" },
@@ -27,10 +38,11 @@ const ReorderItem = ({ todo, onDeleteItem, onChangeItem }: ItemProps) => {
 
   return (
     <Reorder.Item
+      {...props}
       value={todo}
       id={todo.id}
       style={{ y }}
-      dragListener={false}
+      layout="position"
       dragControls={controls}
       className="px-2 py-1.5 bg-tint-1  rounded-2 flex flex-row gap-1 items-center
            shadow-[4px_4px_7.1px_0px_rgba(0,0,0,0.10)]
