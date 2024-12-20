@@ -10,10 +10,12 @@ interface DrawerProps extends BackdropProps {
   arc?: Arc;
 }
 
+const delay = 0.1;
+
 const defaultVariantTransition: Transition = {
   // x: { stiffness: 1000 },
   type: "spring",
-  delay: 0.4,
+  delay,
 };
 const defaultDrawerVariants: Record<Arc, Variants> = {
   left: {
@@ -53,7 +55,7 @@ const Drawer = ({
 }: DrawerProps) => {
   return (
     <AnimatePresence>
-      <Backdrop key={key} open={open} onClose={onClose}>
+      <Backdrop duration={delay} key={key} open={open} onClose={onClose}>
         {open && (
           <motion.div
             variants={defaultDrawerVariants[arc]}

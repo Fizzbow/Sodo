@@ -7,6 +7,7 @@ const Backdrop = ({
   onClose,
   contentClassName,
   position,
+  duration = 0,
 }: BackdropProps) => {
   return (
     <>
@@ -22,7 +23,7 @@ const Backdrop = ({
             backdropFilter: "blur(6px)",
           }}
           transition={{
-            duration: 0.4,
+            duration,
             ease: "easeInOut",
           }}
           onClick={() => onClose(false)}
