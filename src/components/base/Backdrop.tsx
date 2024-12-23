@@ -28,12 +28,12 @@ const Backdrop = ({
           }}
           onClick={() => onClose(false)}
         >
-          <motion.div
+          <div
             className={contentClassName}
             onClick={(e) => e.stopPropagation()}
           >
             {children}
-          </motion.div>
+          </div>
         </motion.main>
       )}
     </>

@@ -11,6 +11,7 @@ const Checkbox = ({ onChange, id, checked }: CheckboxProps) => {
   const opacity = useTransform(pathLength, [0.05, 0.15], [0, 1]);
   return (
     <motion.label
+      onClick={(e) => e.stopPropagation()}
       animate={{
         background: checked ? "rgba(var(--check),1)" : "rgba(var(--check),0.3)",
       }}

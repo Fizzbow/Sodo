@@ -5,7 +5,7 @@ import { BackdropProps } from "../../types/ui.type";
 
 type Arc = "left" | "right";
 
-interface DrawerProps extends BackdropProps {
+export interface DrawerProps extends BackdropProps {
   key: string;
   arc?: Arc;
 }
@@ -14,14 +14,13 @@ const delay = 0.1;
 
 const defaultVariantTransition: Transition = {
   // x: { stiffness: 1000 },
-  type: "spring",
+  type: "ease",
   delay,
 };
 const defaultDrawerVariants: Record<Arc, Variants> = {
   left: {
     visible: {
-      x: "20px",
-      y: "20px",
+      x: "0px",
       opacity: 1,
       transition: defaultVariantTransition,
     },
@@ -34,7 +33,6 @@ const defaultDrawerVariants: Record<Arc, Variants> = {
   right: {
     visible: {
       x: "-20px",
-      y: "20px",
       opacity: 1,
       transition: defaultVariantTransition,
     },

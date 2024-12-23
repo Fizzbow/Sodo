@@ -6,7 +6,7 @@ import Button from "./base/Button";
 import Dialog from "./base/Dialog";
 import { Card, Item } from "../types";
 import ReorderItem from "./ReorderItem";
-import Drawer from "./base/Drawer";
+import Drawer, { DrawerProps } from "./base/Drawer";
 
 interface ListProps {
   list: Array<Item>;
@@ -28,6 +28,7 @@ const ListGroup = ({
   const [dialogShow, setDialogShow] = useState(false);
   const [inputVal, setInputVal] = useState("");
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [drawerId, setDrawerId] = useState("");
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
@@ -65,7 +66,9 @@ const ListGroup = ({
           {list.map((todo) => {
             return (
               <ReorderItem
-                onClick={() => setOpenDrawer(true)}
+                onClick={() => {
+                  setOpenDrawer(true), setDrawerId(todo.id);
+                }}
                 todo={todo}
                 key={todo.id}
                 onChangeItem={(item) => onChangeItem(item)}
@@ -110,17 +113,27 @@ const ListGroup = ({
           <span className="text-white font-600 w-full">ADD</span>
         </Button>
       </Dialog>
-
       <Drawer
+        key={`drawer-${drawerId}`}
         open={openDrawer}
-        onClose={() => {
-          setOpenDrawer(false);
-        }}
-        key="drawer"
+        onClose={() => setOpenDrawer(false)}
       >
-        <div className="p-10 bg-white">{JSON.stringify(openDrawer)}</div>
+        <DrawerContent />
       </Drawer>
     </>
+  );
+};
+
+const DrawerContent = () => {
+  return (
+    <div
+      style={{
+        height: "calc(100vh - 2.5rem)",
+      }}
+      className="p-5 m-5 rounded-lg bg-white "
+    >
+      {/* {JSON.stringify(open)} */}
+    </div>
   );
 };
 
