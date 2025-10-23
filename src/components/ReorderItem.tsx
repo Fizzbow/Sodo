@@ -9,8 +9,6 @@ import DragIcon from "./DragIcon";
 import Checkbox from "./base/Checkbox";
 
 import { Item } from "../types";
-import DropDown, { Menu } from "./base/DropDown";
-import { useState } from "react";
 import TodoInput from "./base/TodoInput";
 
 interface ItemProps extends MotionProps {
@@ -26,12 +24,12 @@ const ReorderItem = ({
   onChangeItem,
   ...props
 }: ItemProps) => {
-  const [open, setOpen] = useState(false);
-  const menus: Menu[] = [
-    { id: "created", label: "created at" },
-    { id: "updated", label: "updated at" },
-  ];
-  const [menu, setMenu] = useState<Menu | null>(null);
+  // const [open, setOpen] = useState(false);
+  // const menus: Menu[] = [
+  //   { id: "created", label: "created at" },
+  //   { id: "updated", label: "updated at" },
+  // ];
+  // const [menu, setMenu] = useState<Menu | null>(null);
 
   const controls = useDragControls();
   const y = useMotionValue(0);
@@ -44,7 +42,7 @@ const ReorderItem = ({
       style={{ y }}
       layout="position"
       dragControls={controls}
-      className="px-2 py-1.5 bg-tint-1  rounded-2 flex flex-row gap-1 items-center
+      className="px-2 py-2 bg-tint-1  rounded-2 flex flex-row gap-1 items-center
            shadow-[4px_4px_7.1px_0px_rgba(0,0,0,0.10)]
           hover:outline-checkedOutline hover:outline-solid hover:outline-2"
     >
@@ -70,7 +68,7 @@ const ReorderItem = ({
             });
           }}
         />
-        <div className="flex flex-row font-Switzer items-center text-3 gap-2">
+        {/* <div className="flex flex-row font-Switzer items-center text-3 gap-2">
           <DropDown
             open={open}
             menus={menus}
@@ -93,7 +91,7 @@ const ReorderItem = ({
           <span className="font-400 text-tint-3/70">
             {menu?.id === "created" ? todo.create_time : todo.update_time}
           </span>
-        </div>
+        </div> */}
       </div>
 
       <Button

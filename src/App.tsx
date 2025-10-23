@@ -1,90 +1,99 @@
-import { useEffect } from "react";
+import { useState } from "react";
 
 import THEMES from "./constant/themes.constant";
-import { Action, Card, Item, Theme, THEMECOLOR } from "./types";
-import { INIT_TODO_CARD, TODO_LIST } from "./constant/todo.constant";
+import { Action, Card, Item, THEMECOLOR } from "./types";
+
 import TodoCard from "./pages/todo/TodoCard";
-import todoReducer, { CardAction } from "./utils/todoReducer";
-import { useImmerReducer } from "use-immer";
 
-const storageTodoList = localStorage.getItem(TODO_LIST);
-
-function initTodoList(): Card {
-  if (!storageTodoList) {
-    return INIT_TODO_CARD;
-  }
-
-  return JSON.parse(storageTodoList);
-}
+import SideBar from "./components/SideBar";
+import { useTodoStore } from "./store/db";
 
 function App() {
-  const [todo, dispatch] = useImmerReducer<Card, CardAction>(
-    todoReducer,
-    initTodoList()
-  );
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const { cards, currentId, dispatchToCard, createCard } = useTodoStore();
 
-  useEffect(() => {
-    localStorage.setItem(TODO_LIST, JSON.stringify(todo));
-  }, [todo]);
+  const current = cards[currentId ?? "default"];
 
-  function toggleTheme(themeId: Theme["themeId"]) {
-    const newTheme = THEMES.find((i) => i.themeId === themeId)
-      ?.themeId as THEMECOLOR;
-
-    if (!newTheme) return;
-
-    dispatch({ theme: newTheme, type: Action.CHANGE_THEME });
+  function toggleTheme(themeId: string) {
+    if (!current) return;
+    const theme = THEMES.find((t) => t.themeId === themeId);
+    if (theme)
+      dispatchToCard(current.card_id, {
+        type: Action.CHANGE_THEME,
+        theme: theme.themeId as THEMECOLOR,
+      });
   }
 
   function handleAddList(text: string) {
-    dispatch({
-      text,
-      type: Action.ADD_TO_LIST,
-    });
+    if (!current) return;
+    dispatchToCard(current.card_id, { type: Action.ADD_TO_LIST, text });
   }
+
   function handleDeleteList(id: string) {
-    dispatch({
-      type: Action.DELETE,
-      id,
-    });
+    if (!current) return;
+    dispatchToCard(current.card_id, { type: Action.DELETE, id });
   }
+
   function handleChangeItem(item: Item) {
-    dispatch({
-      type: Action.CHANGE_ITEM,
-      ...item,
-    });
+    if (!current) return;
+    dispatchToCard(current.card_id, { type: Action.CHANGE_ITEM, ...item });
   }
+
   function handleChangeList(card: Card) {
-    dispatch({
-      type: Action.RESET_CARD,
-      card,
-    });
+    if (!current) return;
+    dispatchToCard(current.card_id, { type: Action.RESET_CARD, card });
   }
 
   return (
-    <>
+    <div className="flex h-screen w-full">
+      <SideBar
+        isOpen={isSidebarOpen}
+        className="backdrop-blur-md bg-white/20 border border-white/30 flex flex-col"
+      >
+        <div className="flex items-center flex-1 flex-col gap-2">
+          {Object.keys(cards).map((key) => (
+            <div
+              className="cursor-pointer bg-gray-200/50 p-2 rounded-xl flex items-center justify-between w-full"
+              key={key}
+            >
+              <span>{cards[key].title}</span>
+            </div>
+          ))}
+        </div>
+        <div
+          onClick={() => createCard("new list")}
+          className="cursor-pointer  p-2 rounded-xl flex items-center justify-between w-full"
+        >
+          add new list
+        </div>
+      </SideBar>
+
       <div
         overflow-hidden
         flex="~ col"
-        className={`themed ${todo.theme} font-Poppins  font-500  px-6 w-full h-full transition-background-color-2 transition-color-2 bg-primary`}
+        className={`themed ${current?.theme} font-Poppins  font-500  px-6 w-full h-full transition-background-color-2 transition-color-2 bg-primary`}
       >
-        {/* <ThemeToggle themes={THEMES} setTheme={toggleTheme} /> */}
-
         <header className="py-5" flex="~ row items-center justify-center">
-          {THEMES.map((theme) => (
-            <div
-              key={theme.themeId}
-              style={{
-                background: theme.color,
-              }}
-              onClick={() => toggleTheme(theme.themeId)}
-              className="w-3 h-3 rounded-[50%] mx-1 cursor-pointer shadow-tint-3/100 shadow-sm"
-            />
-          ))}
+          <div
+            className="i-mynaui:sidebar-alt text-7 text-secondary/100 absolute left-6 cursor-pointer hover:opacity-80 transition-opacity"
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          />
+          <div flex="~ row items-center justify-center">
+            {THEMES.map((theme) => (
+              <div
+                key={theme.themeId}
+                style={{
+                  background: theme.color,
+                }}
+                onClick={() => toggleTheme(theme.themeId)}
+                className="w-3 h-3 rounded-[50%] mx-1 cursor-pointer shadow-tint-3/100 shadow-sm"
+              />
+            ))}
+          </div>
         </header>
 
         <TodoCard
-          todoList={todo}
+          todoList={current}
           onChangeListOrder={(card) => handleChangeList(card)}
           onDeleteItem={(id) => handleDeleteList(id)}
           onAddItem={(text) => handleAddList(text)}
@@ -93,7 +102,7 @@ function App() {
 
         {/* <Footer /> */}
       </div>
-    </>
+    </div>
   );
 }
 

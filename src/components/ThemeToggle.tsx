@@ -45,7 +45,6 @@ const ThemeToggle = ({ themes, setTheme }: Props) => {
         >
           <div className="i-gravity-ui:palette text-7" />
         </motion.button>
-
         {showToggle && (
           <motion.svg
             initial="hidden"

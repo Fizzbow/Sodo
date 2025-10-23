@@ -32,7 +32,7 @@ const defaultDrawerVariants: Record<Arc, Variants> = {
   },
   right: {
     visible: {
-      x: "-20px",
+      x: "0px",
       opacity: 1,
       transition: defaultVariantTransition,
     },
@@ -61,6 +61,7 @@ const Drawer = ({
             initial="hidden"
             exit="hidden"
             animate="visible"
+            className={arc === "right" ? "fixed top-0 right-0 h-full" : ""}
           >
             {children}
           </motion.div>

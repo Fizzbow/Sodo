@@ -6,7 +6,8 @@ import Button from "./base/Button";
 import Dialog from "./base/Dialog";
 import { Card, Item } from "../types";
 import ReorderItem from "./ReorderItem";
-import Drawer, { DrawerProps } from "./base/Drawer";
+import Drawer from "./base/Drawer";
+import Checkbox from "./base/Checkbox";
 
 interface ListProps {
   list: Array<Item>;
@@ -45,7 +46,7 @@ const ListGroup = ({
 
   return (
     <>
-      <section className="flex flex-row justify-start px-4">
+      <section className="flex flex-row justify-start">
         <div
           className="text-secondary/100 flex flex-row cursor-pointer gap-2 w-28 items-center"
           onClick={() => setDialogShow(!dialogShow)}
@@ -61,7 +62,7 @@ const ListGroup = ({
           values={list}
           onReorder={onChangeListOrder}
           ref={scoped}
-          className="mb-4 flex flex-col gap-4 overflow-auto scrollStyle p-4 h-100%"
+          className="mb-4 flex flex-col gap-4 overflow-auto scrollStyle py-4 h-100%"
         >
           {list.map((todo) => {
             return (
@@ -117,22 +118,59 @@ const ListGroup = ({
         key={`drawer-${drawerId}`}
         open={openDrawer}
         onClose={() => setOpenDrawer(false)}
+        arc="right"
       >
-        <DrawerContent />
+        <ItemDrawerContent
+          item={list.find((item) => item.id === drawerId) as Item}
+          onChangeItem={onChangeItem}
+        />
       </Drawer>
     </>
   );
 };
 
-const DrawerContent = () => {
+const ItemDrawerContent = ({
+  item,
+  onChangeItem,
+}: {
+  item: Item;
+  onChangeItem: (item: Item) => void;
+}) => {
   return (
     <div
       style={{
         height: "calc(100vh - 2.5rem)",
       }}
-      className="p-5 m-5 rounded-lg bg-white "
+      className="p-5 m-5 rounded-lg bg-white text-gray-700 text-sm flex flex-col gap-4"
     >
-      {/* {JSON.stringify(open)} */}
+      <div className="flex flex-row items-center gap-2">
+        <Checkbox
+          checked={item.checked}
+          onChange={(e) => onChangeItem({ ...item, checked: e.target.checked })}
+        />
+        <span>{item.text}</span>
+      </div>
+
+      <div className="w-full h-1px bg-gray-200" />
+      <div className="flex flex-row items-center gap-2">
+        <span>created at</span>
+        <span>{item.create_time}</span>
+      </div>
+
+      <div className="flex flex-row items-center gap-2">
+        <span>remind me</span>
+        <span>{item.update_time}</span>
+      </div>
+
+      <div className="w-full h-1px bg-gray-200" />
+
+      <input
+        value={item.caption}
+        onChange={(e) => onChangeItem({ ...item, caption: e.target.value })}
+        type="text"
+        className="w-full"
+        placeholder="add note..."
+      />
     </div>
   );
 };
