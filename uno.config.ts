@@ -7,7 +7,6 @@ import {
   presetIcons,
   presetTypography,
   presetUno,
-  presetWebFonts,
   transformerAttributifyJsx,
 } from "unocss";
 
@@ -64,32 +63,32 @@ export default defineConfig({
   safelist: [],
   presets: [
     presetUno(),
-    presetWebFonts({
-      provider: "fontshare",
-      fonts: {
-        Poppins: [
-          { name: "Poppins", weights: ["400", "500", "600", "700"] },
-          {
-            name: "sans-serif",
-            provider: "none",
-          },
-        ],
-        Switzer: [
-          { name: "Switzer", weights: ["300", "400", "500", "600", "800"] },
-          {
-            name: "sans-serif",
-            provider: "none",
-          },
-        ],
-        Satoshi: [
-          { name: "Satoshi", weights: ["300", "400", "500", "600", "800"] },
-          {
-            name: "sans-serif",
-            provider: "none",
-          },
-        ],
-      },
-    }),
+    // presetWebFonts({
+    //   provider: "fontshare",
+    //   fonts: {
+    //     Poppins: [
+    //       { name: "Poppins", weights: ["400", "500", "600", "700"] },
+    //       {
+    //         name: "sans-serif",
+    //         provider: "none",
+    //       },
+    //     ],
+    //     Switzer: [
+    //       { name: "Switzer", weights: ["300", "400", "500", "600", "800"] },
+    //       {
+    //         name: "sans-serif",
+    //         provider: "none",
+    //       },
+    //     ],
+    //     Satoshi: [
+    //       { name: "Satoshi", weights: ["300", "400", "500", "600", "800"] },
+    //       {
+    //         name: "sans-serif",
+    //         provider: "none",
+    //       },
+    //     ],
+    //   },
+    // }),
     presetAttributify(),
     presetIcons({
       extraProperties: { display: "inline-block", "vertical-align": "middle" },

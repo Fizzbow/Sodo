@@ -10,12 +10,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.1.16",
+    "@unocss/reset": "^66.5.4",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "immer": "^10.1.1",
     "localforage": "^1.10.0",
+    "lucide-react": "^0.546.0",
     "motion": "^11.15.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "scss": "^0.2.4",
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss": "^4.1.16",
     "use-immer": "^0.9.0",
     "uuid": "^9.0.1",
     "vercel": "^32.5.0",
@@ -32,8 +39,9 @@
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "tw-animate-css": "^1.4.0",
     "typescript": "^5.0.2",
-    "unocss": "^0.55.7",
+    "unocss": "latest",
     "vite": "^4.4.5"
   }
 }
