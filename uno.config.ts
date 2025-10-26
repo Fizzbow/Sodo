@@ -11,6 +11,7 @@ import {
 } from "unocss";
 
 import { Theme } from "unocss/preset-mini";
+import { presetShadcn } from "unocss-preset-shadcn";
 
 import {
   GLOBAL_VAR_STATUS,
@@ -63,6 +64,10 @@ export default defineConfig({
   safelist: [],
   presets: [
     presetUno(),
+    presetShadcn({
+      color: "red",
+      darkSelector: '[data-kb-theme="dark"]',
+    }),
     // presetWebFonts({
     //   provider: "fontshare",
     //   fonts: {
@@ -95,5 +100,13 @@ export default defineConfig({
     }),
     presetTypography(),
   ],
+  content: {
+    pipeline: {
+      include: [
+        /\.(vue|svelte|[jt]sx|mdx?|astro|elm|php|phtml|html)($|\?)/,
+        "(components|src)/**/*.{js,ts}",
+      ],
+    },
+  },
   transformers: [transformerAttributifyJsx()],
 });

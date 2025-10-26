@@ -107,12 +107,12 @@ function App() {
               );
             })}
           </div>
-          <div
-            onClick={() => setNewListDialogOpen(true)}
-            className="cursor-pointer p-3 rounded-xl flex items-center justify-between w-full transition-all duration-200 hover:scale-105 bg-white/5 border border-dashed border-white/30"
-          >
-            <span className="text-white/70 font-medium">+ add new list</span>
-          </div>
+
+          <NewListDialog
+            // open={newListDialogOpen}
+            // onClose={() => setNewListDialogOpen(false)}
+            handleAddList={(name) => createCard(name)}
+          />
         </SideBar>
 
         <div
@@ -149,12 +149,6 @@ function App() {
           {/* <Footer /> */}
         </div>
       </div>
-
-      <NewListDialog
-        open={newListDialogOpen}
-        onClose={() => setNewListDialogOpen(false)}
-        handleAddList={(name) => createCard(name)}
-      />
     </div>
   );
 }
